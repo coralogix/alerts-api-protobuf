@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package com.coralogix.alerts.v1;
+
+option (scalapb.options) = {
+  package_name: "com.coralogix.alerts.grpc.external.v1"
+  flat_package: true
+};
+
+import "google/protobuf/wrappers.proto";
+import "scalapb/scalapb.proto";
+
+import "com/coralogix/alerts/v1/Alert.proto";
+import "com/coralogix/alerts/v1/AlertSeverity.proto";
+import "com/coralogix/alerts/v1/AlertCondition.proto";
+import "com/coralogix/alerts/v1/AlertNotifications.proto";
+import "com/coralogix/alerts/v1/AlertFilters.proto";
+import "com/coralogix/alerts/v1/AlertActiveWhen.proto";
+import "com/coralogix/alerts/v1/DateTime.proto";
+
+service AlertService {
+  rpc GetAlert(GetAlertRequest) returns (GetAlertResponse) {}
+  rpc CreateAlert(CreateAlertRequest) returns (CreateAlertResponse) {}
+  rpc UpdateAlert(UpdateAlertRequest) returns (UpdateAlertResponse) {}
+  rpc DeleteAlert(DeleteAlertRequest) returns (DeleteAlertResponse) {}  
+}
+
+message GetAlertRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message GetAlertResponse {
+  Alert alert = 1;
+}
+
+message CreateAlertRequest {
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue description = 3;
+
+  google.protobuf.BoolValue isActive = 4;
+
+  AlertSeverity severity = 5;
+  Date expiration = 6;
+
+  AlertCondition condition = 7;
+  AlertNotifications notifications = 8;
+  AlertFilters filters = 9;
+
+  google.protobuf.DoubleValue notifyEvery = 10;
+
+  AlertActiveWhen activeWhen = 11;
+
+  repeated google.protobuf.StringValue notificationPayloadFilters = 12;  
+}
+
+message CreateAlertResponse {
+  Alert alert = 1;
+}
+
+message UpdateAlertRequest {
+  Alert alert = 1;
+}
+
+message UpdateAlertResponse {
+  Alert alert = 1;
+}
+
+message DeleteAlertRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message DeleteAlertResponse {
+}

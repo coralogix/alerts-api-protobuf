@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package com.coralogix.alerts.v1;
+
+option (scalapb.options) = {
+  package_name: "com.coralogix.alerts.grpc.external.v1"
+  flat_package: true
+};
+
+import "scalapb/scalapb.proto";
+
+message Date {
+  int32 year = 1;
+  int32 month = 2;
+  int32 day = 3;
+}
+
+message Time {
+  int32 hours = 1;
+  int32 minutes = 2;
+  int32 seconds = 3;
+}
