@@ -38,6 +38,12 @@ message AlertFilters {
     repeated google.protobuf.StringValue subsystems = 5;
   }
 
+  enum FilterType {
+    TEXT = 0;
+    TEMPLATE = 1;
+    RATIO = 2;
+  }
+
   repeated LogSeverity severities = 1;
   MetadataFilters metadata = 2;
 
@@ -45,4 +51,6 @@ message AlertFilters {
   google.protobuf.StringValue text = 4;
 
   repeated RatioAlert ratioAlerts = 5;
+
+  FilterType filterType = 6;
 }
