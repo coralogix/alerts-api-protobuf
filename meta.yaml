@@ -1,0 +1,7 @@
+name: alerts-api-protobuf
+version: v0.4
+deployable_type: library
+tests: true
+code_language: scala
+test_image_name: scala-sbt-redis-server
+test_image_tag: "11.0.8_1.4.3_2.13.3"
