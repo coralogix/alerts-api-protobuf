@@ -17,12 +17,21 @@ import "com/coralogix/alerts/v1/AlertNotifications.proto";
 import "com/coralogix/alerts/v1/AlertFilters.proto";
 import "com/coralogix/alerts/v1/AlertActiveWhen.proto";
 import "com/coralogix/alerts/v1/DateTime.proto";
+import "google/protobuf/descriptor.proto";
+
+message AuditLogDescription {
+  optional string description = 1;
+}
+
+extend google.protobuf.MethodOptions {
+  optional AuditLogDescription audit_log_description = 5000;
+}
 
 service AlertService {
-  rpc GetAlert(GetAlertRequest) returns (GetAlertResponse) {}
-  rpc CreateAlert(CreateAlertRequest) returns (CreateAlertResponse) {}
-  rpc UpdateAlert(UpdateAlertRequest) returns (UpdateAlertResponse) {}
-  rpc DeleteAlert(DeleteAlertRequest) returns (DeleteAlertResponse) {}  
+  rpc GetAlert(GetAlertRequest) returns (GetAlertResponse) {option (audit_log_description).description = "get alert";}
+  rpc CreateAlert(CreateAlertRequest) returns (CreateAlertResponse) {option (audit_log_description).description = "create alert";}
+  rpc UpdateAlert(UpdateAlertRequest) returns (UpdateAlertResponse) {option (audit_log_description).description = "update alert";}
+  rpc DeleteAlert(DeleteAlertRequest) returns (DeleteAlertResponse) {option (audit_log_description).description = "delete alert";}
 }
 
 message GetAlertRequest {
