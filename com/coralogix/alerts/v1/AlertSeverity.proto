@@ -2,13 +2,6 @@ syntax = "proto3";
 
 package com.coralogix.alerts.v1;
 
-option (scalapb.options) = {
-  package_name: "com.coralogix.alerts.grpc.external.v1"
-  flat_package: true
-};
-
-import "scalapb/scalapb.proto";
-
 enum AlertSeverity {
   INFO = 0;
   WARNING = 1;
