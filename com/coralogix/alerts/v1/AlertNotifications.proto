@@ -2,13 +2,7 @@ syntax = "proto3";
 
 package com.coralogix.alerts.v1;
 
-option (scalapb.options) = {
-  package_name: "com.coralogix.alerts.grpc.external.v1"
-  flat_package: true
-};
-
 import "google/protobuf/wrappers.proto";
-import "scalapb/scalapb.proto";
 
 message AlertNotifications {
   repeated google.protobuf.StringValue emails = 1;
