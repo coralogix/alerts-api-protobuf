@@ -7,10 +7,10 @@ import "google/protobuf/wrappers.proto";
 message AlertCondition {
   oneof condition {
     ImmediateCondition immediate = 1;
-    LessThanCondition lessThan = 2;
-    MoreThanCondition moreThan = 3;
-    MoreThanUsualCondition moreThanUsual = 4;
-    NewValueCondition newValue = 5;
+    LessThanCondition less_than = 2;
+    MoreThanCondition more_than = 3;
+    MoreThanUsualCondition more_than_usual = 4;
+    NewValueCondition new_value = 5;
   }
 }
 
@@ -36,25 +36,25 @@ message NewValueCondition {
 message ConditionParameters {
   google.protobuf.DoubleValue threshold = 1;
   Timeframe timeframe = 2;
-  google.protobuf.StringValue groupBy = 3;
+  google.protobuf.StringValue group_by = 3;
 }
 
 enum Timeframe {
-  _5Min = 0;
-  _10Min = 1;
-  _20Min = 2;
-  _30Min = 3;
-  _1H = 4;
-  _2H = 5;
-  _3H = 6;
-  _4H = 7;
-  _6H = 8;
-  _12H = 9;
-  _24H = 10;
-  _48H = 11;
-  _72H = 12;
-  _1W = 13;
-  _1M = 14;
-  _2M = 15;
-  _3M = 16;
+  TIMEFRAME_5_MIN_OR_UNSPECIFIED = 0;
+  TIMEFRAME_10_MIN = 1;
+  TIMEFRAME_20_MIN = 2;
+  TIMEFRAME_30_MIN = 3;
+  TIMEFRAME_1_H = 4;
+  TIMEFRAME_2_H = 5;
+  TIMEFRAME_3_H = 6;
+  TIMEFRAME_4_H = 7;
+  TIMEFRAME_6_H = 8;
+  TIMEFRAME_12_H = 9;
+  TIMEFRAME_24_H = 10;
+  TIMEFRAME_48_H = 11;
+  TIMEFRAME_72_H = 12;
+  TIMEFRAME_1_W = 13;
+  TIMEFRAME_1_M = 14;
+  TIMEFRAME_2_M = 15;
+  TIMEFRAME_3_M = 16;
 }

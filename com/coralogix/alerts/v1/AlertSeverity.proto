@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package com.coralogix.alerts.v1;
-
-enum AlertSeverity {
-  INFO = 0;
-  WARNING = 1;
-  CRITICAL = 2;
-}

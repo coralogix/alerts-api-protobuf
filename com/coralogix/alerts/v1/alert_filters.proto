@@ -6,12 +6,12 @@ import "google/protobuf/wrappers.proto";
 
 message AlertFilters {
   enum LogSeverity {
-    DEBUG = 0;
-    VERBOSE = 1;
-    INFO = 2;
-    WARNING = 3;
-    ERROR = 4;
-    CRITICAL = 5;
+    LOG_SEVERITY_DEBUG_OR_UNSPECIFIED = 0;
+    LOG_SEVERITY_VERBOSE = 1;
+    LOG_SEVERITY_INFO = 2;
+    LOG_SEVERITY_WARNING = 3;
+    LOG_SEVERITY_ERROR = 4;
+    LOG_SEVERITY_CRITICAL = 5;
   }
 
   message MetadataFilters {
@@ -21,7 +21,7 @@ message AlertFilters {
     repeated google.protobuf.StringValue computers = 4;
     repeated google.protobuf.StringValue classes = 5;
     repeated google.protobuf.StringValue methods = 6;
-    repeated google.protobuf.StringValue ipAddresses = 7;
+    repeated google.protobuf.StringValue ip_addresses = 7;
   }
 
   message RatioAlert {
@@ -33,9 +33,9 @@ message AlertFilters {
   }
 
   enum FilterType {
-    TEXT = 0;
-    TEMPLATE = 1;
-    RATIO = 2;
+    FILTER_TYPE_TEXT_OR_UNSPECIFIED = 0;
+    FILTER_TYPE_TEMPLATE = 1;
+    FILTER_TYPE_RATIO = 2;
   }
 
   repeated LogSeverity severities = 1;
@@ -44,7 +44,7 @@ message AlertFilters {
   google.protobuf.StringValue alias = 3;
   google.protobuf.StringValue text = 4;
 
-  repeated RatioAlert ratioAlerts = 5;
+  repeated RatioAlert ratio_alerts = 5;
 
-  FilterType filterType = 6;
+  FilterType filter_type = 6;
 }
