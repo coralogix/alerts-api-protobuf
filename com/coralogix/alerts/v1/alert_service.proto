@@ -12,6 +12,8 @@ import "com/coralogix/alerts/v1/alert_filters.proto";
 import "com/coralogix/alerts/v1/alert_active_when.proto";
 import "com/coralogix/alerts/v1/date_time.proto";
 import "google/protobuf/descriptor.proto";
+import "google/api/annotations.proto";
+
 
 message AuditLogDescription {
   optional string description = 1;
@@ -22,10 +24,32 @@ extend google.protobuf.MethodOptions {
 }
 
 service AlertService {
-  rpc GetAlert(GetAlertRequest) returns (GetAlertResponse) {option (audit_log_description).description = "get alert";}
-  rpc CreateAlert(CreateAlertRequest) returns (CreateAlertResponse) {option (audit_log_description).description = "create alert";}
-  rpc UpdateAlert(UpdateAlertRequest) returns (UpdateAlertResponse) {option (audit_log_description).description = "update alert";}
-  rpc DeleteAlert(DeleteAlertRequest) returns (DeleteAlertResponse) {option (audit_log_description).description = "delete alert";}
+  rpc GetAlert(GetAlertRequest) returns (GetAlertResponse) {
+    option (audit_log_description).description = "get alert";
+    option (google.api.http) = {
+      get: "/api/v1/alerts/{id}"
+    };
+  }
+  rpc CreateAlert(CreateAlertRequest) returns (CreateAlertResponse) {
+    option (audit_log_description).description = "create alert";
+    option (google.api.http) = {
+      post: "/api/v1/alerts/"
+      body: "*"
+    };
+  }
+  rpc UpdateAlert(UpdateAlertRequest) returns (UpdateAlertResponse) {
+    option (audit_log_description).description = "update alert";
+    option (google.api.http) = {
+      put: "/api/v1/alerts/{alert.id}"
+      body: "alert"
+    };
+  }
+  rpc DeleteAlert(DeleteAlertRequest) returns (DeleteAlertResponse) {
+    option (audit_log_description).description = "delete alert";
+    option (google.api.http) = {
+      delete: "/api/v1/alerts/{id}"
+    };
+  }
 }
 
 message GetAlertRequest {
