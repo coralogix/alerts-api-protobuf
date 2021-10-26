@@ -23,6 +23,8 @@ message LessThanCondition {
 
 message MoreThanCondition {
   ConditionParameters parameters = 1;
+
+  google.protobuf.StringValue group_by_lvl2 = 2;
 }
 
 message MoreThanUsualCondition {
@@ -37,6 +39,8 @@ message ConditionParameters {
   google.protobuf.DoubleValue threshold = 1;
   Timeframe timeframe = 2;
   google.protobuf.StringValue group_by = 3;
+
+  MetricAlertConditionParameters metric_alert_parameters = 4;
 }
 
 enum Timeframe {
@@ -57,4 +61,34 @@ enum Timeframe {
   TIMEFRAME_1_M = 14;
   TIMEFRAME_2_M = 15;
   TIMEFRAME_3_M = 16;
+}
+
+message MetricAlertConditionParameters {
+  google.protobuf.StringValue metric_field = 1;
+
+  enum MetricSource {
+    METRIC_SOURCE_LOGS2METRICS_OR_UNSPECIFIED = 0;
+    METRIC_SOURCE_PROMETHEUS = 1;
+  }
+
+  MetricSource metric_source = 2;
+
+  enum ArithmeticOperator {
+    ARITHMETIC_OPERATOR_AVG_OR_UNSPECIFIED = 0;
+    ARITHMETIC_OPERATOR_MIN = 1;
+    ARITHMETIC_OPERATOR_MAX = 2;
+    ARITHMETIC_OPERATOR_SUM = 3;
+    ARITHMETIC_OPERATOR_COUNT = 4;
+    ARITHMETIC_OPERATOR_PERCENTILE = 5;
+  }
+
+  ArithmeticOperator arithmetic_operator = 3;
+
+  google.protobuf.UInt32Value arithmetic_operator_modifier = 4;
+
+  google.protobuf.UInt32Value sample_threshold_percentage = 5;
+
+  google.protobuf.UInt32Value non_null_percentage = 6;
+
+  google.protobuf.BoolValue swap_null_values = 7;
 }
