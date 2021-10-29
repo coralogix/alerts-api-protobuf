@@ -14,6 +14,8 @@ message AlertFilters {
     LOG_SEVERITY_CRITICAL = 5;
   }
 
+  repeated LogSeverity severities = 1;
+
   message MetadataFilters {
     repeated google.protobuf.StringValue categories = 1;
     repeated google.protobuf.StringValue applications = 2;
@@ -24,6 +26,11 @@ message AlertFilters {
     repeated google.protobuf.StringValue ip_addresses = 7;
   }
 
+  MetadataFilters metadata = 2;
+
+  google.protobuf.StringValue alias = 3;
+  google.protobuf.StringValue text = 4;
+
   message RatioAlert {
     google.protobuf.StringValue alias = 1;
     google.protobuf.StringValue text = 2;
@@ -32,19 +39,16 @@ message AlertFilters {
     repeated google.protobuf.StringValue subsystems = 5;
   }
 
+  repeated RatioAlert ratio_alerts = 5;
+
   enum FilterType {
     FILTER_TYPE_TEXT_OR_UNSPECIFIED = 0;
     FILTER_TYPE_TEMPLATE = 1;
     FILTER_TYPE_RATIO = 2;
+    FILTER_TYPE_UNIQUE_COUNT = 3;
+    FILTER_TYPE_RELATIVE_TIME = 4;
+    FILTER_TYPE_METRIC = 5;
   }
-
-  repeated LogSeverity severities = 1;
-  MetadataFilters metadata = 2;
-
-  google.protobuf.StringValue alias = 3;
-  google.protobuf.StringValue text = 4;
-
-  repeated RatioAlert ratio_alerts = 5;
 
   FilterType filter_type = 6;
 }
