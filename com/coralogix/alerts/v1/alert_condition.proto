@@ -41,6 +41,7 @@ message ConditionParameters {
   google.protobuf.StringValue group_by = 3;
 
   MetricAlertConditionParameters metric_alert_parameters = 4;
+  MetricAlertPromqlConditionParameters metric_alert_promql_parameters = 5;
 }
 
 enum Timeframe {
@@ -91,4 +92,17 @@ message MetricAlertConditionParameters {
   google.protobuf.UInt32Value non_null_percentage = 6;
 
   google.protobuf.BoolValue swap_null_values = 7;
+}
+
+message MetricAlertPromqlConditionParameters {
+
+  google.protobuf.StringValue promql_text = 1;
+
+  google.protobuf.UInt32Value arithmetic_operator_modifier = 2;
+
+  google.protobuf.UInt32Value sample_threshold_percentage = 3;
+
+  google.protobuf.UInt32Value non_null_percentage = 4;
+
+  google.protobuf.BoolValue swap_null_values = 5;
 }
