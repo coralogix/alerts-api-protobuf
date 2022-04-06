@@ -42,6 +42,7 @@ message ConditionParameters {
 
   MetricAlertConditionParameters metric_alert_parameters = 4;
   MetricAlertPromqlConditionParameters metric_alert_promql_parameters = 5;
+  google.protobuf.BoolValue notify_on_resolved = 6;
 }
 
 enum Timeframe {
