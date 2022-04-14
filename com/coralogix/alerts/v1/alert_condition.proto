@@ -67,10 +67,10 @@ enum Timeframe {
 }
 
 enum RelativeTimeframe {
-  HOUR = 0;
-  DAY = 1;
-  WEEK = 2;
-  MONTH = 3;
+  RELATIVE_TIMEFRAME_HOUR_OR_UNSPECIFIED = 0;
+  RELATIVE_TIMEFRAME_DAY = 1;
+  RELATIVE_TIMEFRAME_WEEK = 2;
+  RELATIVE_TIMEFRAME_MONTH = 3;
 }
 
 message MetricAlertConditionParameters {
