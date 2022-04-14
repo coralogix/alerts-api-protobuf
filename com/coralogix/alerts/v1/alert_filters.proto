@@ -37,6 +37,7 @@ message AlertFilters {
     repeated LogSeverity severities = 3;
     repeated google.protobuf.StringValue applications = 4;
     repeated google.protobuf.StringValue subsystems = 5;
+    repeated google.protobuf.StringValue group_by = 6;
   }
 
   repeated RatioAlert ratio_alerts = 5;
@@ -46,7 +47,7 @@ message AlertFilters {
     FILTER_TYPE_TEMPLATE = 1;
     FILTER_TYPE_RATIO = 2;
     FILTER_TYPE_UNIQUE_COUNT = 3;
-    FILTER_TYPE_RELATIVE_TIME = 4;
+    FILTER_TYPE_TIME_RELATIVE = 4;
     FILTER_TYPE_METRIC = 5;
   }
 
