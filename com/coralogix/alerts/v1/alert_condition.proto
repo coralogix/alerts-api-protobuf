@@ -23,8 +23,6 @@ message LessThanCondition {
 
 message MoreThanCondition {
   ConditionParameters parameters = 1;
-
-  google.protobuf.StringValue group_by_lvl2 = 2;
 }
 
 message MoreThanUsualCondition {
@@ -38,11 +36,14 @@ message NewValueCondition {
 message ConditionParameters {
   google.protobuf.DoubleValue threshold = 1;
   Timeframe timeframe = 2;
-  google.protobuf.StringValue group_by = 3;
+  repeated google.protobuf.StringValue group_by = 3;
 
   MetricAlertConditionParameters metric_alert_parameters = 4;
   MetricAlertPromqlConditionParameters metric_alert_promql_parameters = 5;
   google.protobuf.BoolValue notify_on_resolved = 6;
+  google.protobuf.BoolValue ignore_infinity = 7;
+  RelativeTimeframe relative_timeframe = 8;
+
 }
 
 enum Timeframe {
@@ -63,6 +64,13 @@ enum Timeframe {
   TIMEFRAME_1_M = 14;
   TIMEFRAME_2_M = 15;
   TIMEFRAME_3_M = 16;
+}
+
+enum RelativeTimeframe {
+  HOUR = 0;
+  DAY = 1;
+  WEEK = 2;
+  MONTH = 3;
 }
 
 message MetricAlertConditionParameters {
