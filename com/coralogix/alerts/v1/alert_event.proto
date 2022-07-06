@@ -13,5 +13,5 @@ message AlertEvent {
   AlertSeverity severity = 3;
   google.protobuf.StringValue subsystem = 4;
   google.protobuf.StringValue application = 5;
-  google.protobuf.Timestamp occurredOn = 6;
+  google.protobuf.Timestamp occurred_on = 6;
 }
