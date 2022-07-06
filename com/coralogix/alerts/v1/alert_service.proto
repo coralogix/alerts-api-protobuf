@@ -116,5 +116,5 @@ message GetAlertEventsRequest {
 }
 
 message GetAlertEventsResponse {
-  AlertEvent events = 1;
+  repeated AlertEvent events = 1;
 }
