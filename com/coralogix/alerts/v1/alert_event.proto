@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package com.coralogix.alerts.v1;
+
+import "google/protobuf/wrappers.proto";
+
+import "com/coralogix/alerts/v1/alert_severity.proto";
+import "google/protobuf/timestamp.proto";
+
+message AlertEvent {
+  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue company_id = 2;
+  AlertSeverity severity = 3;
+  google.protobuf.StringValue subsystem = 4;
+  google.protobuf.StringValue application = 5;
+  google.protobuf.Timestamp occurredOn = 6;
+}

@@ -5,6 +5,7 @@ package com.coralogix.alerts.v1;
 import "google/protobuf/wrappers.proto";
 
 import "com/coralogix/alerts/v1/alert.proto";
+import "com/coralogix/alerts/v1/alert_event.proto";
 import "com/coralogix/alerts/v1/alert_severity.proto";
 import "com/coralogix/alerts/v1/alert_condition.proto";
 import "com/coralogix/alerts/v1/alert_notifications.proto";
@@ -13,7 +14,7 @@ import "com/coralogix/alerts/v1/alert_active_when.proto";
 import "com/coralogix/alerts/v1/date_time.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
-
+import "google/protobuf/timestamp.proto";
 
 message AuditLogDescription {
   optional string description = 1;
@@ -48,6 +49,12 @@ service AlertService {
     option (audit_log_description).description = "delete alert";
     option (google.api.http) = {
       delete: "/api/v1/alerts/{id}"
+    };
+  }
+  rpc GetAlertEvents(GetAlertEventsRequest) returns (GetAlertEventsResponse) {
+    option (audit_log_description).description = "get alert events";
+    option (google.api.http) = {
+      get: "/api/v1/alerts/events"
     };
   }
 }
@@ -100,4 +107,14 @@ message DeleteAlertRequest {
 }
 
 message DeleteAlertResponse {
+}
+
+message GetAlertEventsRequest {
+  google.protobuf.StringValue company_id = 1;
+  google.protobuf.Timestamp from = 2;
+  google.protobuf.Timestamp to = 3;
+}
+
+message GetAlertEventsResponse {
+  AlertEvent events = 1;
 }
