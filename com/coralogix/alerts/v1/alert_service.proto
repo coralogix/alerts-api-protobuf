@@ -110,7 +110,6 @@ message DeleteAlertResponse {
 }
 
 message GetAlertEventsRequest {
-  google.protobuf.StringValue company_id = 1;
   google.protobuf.Timestamp from = 2;
   google.protobuf.Timestamp to = 3;
 }
