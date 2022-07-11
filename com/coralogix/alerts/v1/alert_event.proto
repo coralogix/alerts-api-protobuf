@@ -10,11 +10,12 @@ import "google/protobuf/timestamp.proto";
 message AlertEvent {
   google.protobuf.StringValue id = 1;
   AlertEventType type = 2;
-  google.protobuf.StringValue company_id = 3;
-  AlertSeverity severity = 4;
-  google.protobuf.StringValue subsystem = 5;
-  google.protobuf.StringValue application = 6;
-  google.protobuf.Timestamp occurred_on = 7;
+  google.protobuf.StringValue alert_id = 3;
+  google.protobuf.StringValue company_id = 4;
+  AlertSeverity severity = 5;
+  google.protobuf.StringValue subsystem = 6;
+  google.protobuf.StringValue application = 7;
+  google.protobuf.Timestamp occurred_on = 8;
 
   enum AlertEventType {
     ALERT_EVENT_TYPE_UNSPECIFIED = 0;
