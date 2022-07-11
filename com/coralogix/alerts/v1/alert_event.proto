@@ -9,9 +9,19 @@ import "google/protobuf/timestamp.proto";
 
 message AlertEvent {
   google.protobuf.StringValue id = 1;
-  google.protobuf.StringValue company_id = 2;
-  AlertSeverity severity = 3;
-  google.protobuf.StringValue subsystem = 4;
-  google.protobuf.StringValue application = 5;
-  google.protobuf.Timestamp occurred_on = 6;
+  AlertEventType type = 2;
+  google.protobuf.StringValue company_id = 3;
+  AlertSeverity severity = 4;
+  google.protobuf.StringValue subsystem = 5;
+  google.protobuf.StringValue application = 6;
+  google.protobuf.Timestamp occurred_on = 7;
+
+  enum AlertEventType {
+    ALERT_EVENT_TYPE_UNSPECIFIED = 0;
+    ALERT_EVENT_TYPE_USER_ALERT = 1;
+    ALERT_EVENT_TYPE_ANOMALY = 2;
+    ALERT_EVENT_TYPE_USER_ALERT_GROUP_BY_FIELDS = 3;
+    ALERT_EVENT_TYPE_RATIO_ALERTS = 4;
+    ALERT_EVENT_TYPE_METRIC_ALERTS = 5;
+  }
 }
