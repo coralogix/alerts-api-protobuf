@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package com.coralogix.alerts.v1;
+
+import "google/protobuf/wrappers.proto";
+
+import "com/coralogix/alerts/v1/alert_severity.proto";
+import "google/protobuf/timestamp.proto";
+
+message AlertEvent {
+  google.protobuf.StringValue id = 1;
+  AlertEventType type = 2;
+  google.protobuf.StringValue alert_id = 3;
+  google.protobuf.StringValue company_id = 4;
+  AlertSeverity severity = 5;
+  google.protobuf.StringValue subsystem = 6;
+  google.protobuf.StringValue application = 7;
+  google.protobuf.Timestamp occurred_on = 8;
+
+  enum AlertEventType {
+    ALERT_EVENT_TYPE_UNSPECIFIED = 0;
+    ALERT_EVENT_TYPE_USER_ALERT = 1;
+    ALERT_EVENT_TYPE_ANOMALY = 2;
+    ALERT_EVENT_TYPE_USER_ALERT_GROUP_BY_FIELDS = 3;
+    ALERT_EVENT_TYPE_RATIO_ALERTS = 4;
+    ALERT_EVENT_TYPE_METRIC_ALERTS = 5;
+  }
+}
