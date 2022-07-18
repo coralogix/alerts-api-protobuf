@@ -15,6 +15,7 @@ import "com/coralogix/alerts/v1/date_time.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
+import "com/coralogix/alerts/v1/tracing_alert.proto";
 
 message AuditLogDescription {
   optional string description = 1;
@@ -88,6 +89,8 @@ message CreateAlertRequest {
 
   repeated MetaLabel meta_labels = 13;
   repeated google.protobuf.StringValue meta_labels_strings = 14;
+
+  optional TracingAlert tracing_alert = 15;
 }
 
 message CreateAlertResponse {
