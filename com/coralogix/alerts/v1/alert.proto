@@ -40,5 +40,5 @@ message Alert {
   repeated MetaLabel meta_labels = 13;
   repeated google.protobuf.StringValue meta_labels_strings = 14;
 
-  optional TracingAlert tracing_alert = 15;
+  TracingAlert tracing_alert = 15;
 }
