@@ -49,6 +49,7 @@ message AlertFilters {
     FILTER_TYPE_UNIQUE_COUNT = 3;
     FILTER_TYPE_TIME_RELATIVE = 4;
     FILTER_TYPE_METRIC = 5;
+    FILTER_TYPE_TRACING = 6;
   }
 
   FilterType filter_type = 6;
