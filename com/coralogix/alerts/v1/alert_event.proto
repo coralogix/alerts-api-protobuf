@@ -16,6 +16,7 @@ message AlertEvent {
   google.protobuf.StringValue subsystem = 6;
   google.protobuf.StringValue application = 7;
   google.protobuf.Timestamp occurred_on = 8;
+  google.protobuf.StringValue name = 9;
 
   enum AlertEventType {
     ALERT_EVENT_TYPE_UNSPECIFIED = 0;
