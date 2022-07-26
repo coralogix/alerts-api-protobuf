@@ -41,4 +41,6 @@ message Alert {
   repeated google.protobuf.StringValue meta_labels_strings = 14;
 
   TracingAlert tracing_alert = 15;
+
+  google.protobuf.StringValue unique_identifier = 16;
 }
