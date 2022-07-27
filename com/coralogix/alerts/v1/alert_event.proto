@@ -5,6 +5,7 @@ package com.coralogix.alerts.v1;
 import "google/protobuf/wrappers.proto";
 
 import "com/coralogix/alerts/v1/alert_severity.proto";
+import "com/coralogix/alerts/v1/alert_snoozed.proto";
 import "google/protobuf/timestamp.proto";
 
 message AlertEvent {
@@ -17,6 +18,7 @@ message AlertEvent {
   google.protobuf.StringValue application = 7;
   google.protobuf.Timestamp occurred_on = 8;
   google.protobuf.StringValue name = 9;
+  AlertSnoozed snoozed = 10;
 
   enum AlertEventType {
     ALERT_EVENT_TYPE_UNSPECIFIED = 0;
