@@ -32,6 +32,12 @@ service AlertService {
       get: "/api/v1/alerts/{id}"
     };
   }
+  rpc GetAlertByUniqueId(GetAlertByUniqueIdRequest) returns (GetAlertByUniqueIdResponse) {
+    option (audit_log_description).description = "get alert by unique id";
+    option (google.api.http) = {
+      get: "/api/v1/alerts/unique/{id}"
+    };
+  }
   rpc CreateAlert(CreateAlertRequest) returns (CreateAlertResponse) {
     option (audit_log_description).description = "create alert";
     option (google.api.http) = {
@@ -65,6 +71,14 @@ message GetAlertRequest {
 }
 
 message GetAlertResponse {
+  Alert alert = 1;
+}
+
+message GetAlertByUniqueIdRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message GetAlertByUniqueIdResponse {
   Alert alert = 1;
 }
 
