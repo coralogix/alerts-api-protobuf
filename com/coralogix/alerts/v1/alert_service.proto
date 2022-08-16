@@ -32,6 +32,12 @@ service AlertService {
       get: "/api/v1/alerts/{id}"
     };
   }
+  rpc GetAlerts(GetAlertsRequest) returns (GetAlertsResponse) {
+    option (audit_log_description).description = "get alerts";
+    option (google.api.http) = {
+      get: "/api/v1/alerts"
+    };
+  }
   rpc GetAlertByUniqueId(GetAlertByUniqueIdRequest) returns (GetAlertByUniqueIdResponse) {
     option (audit_log_description).description = "get alert by unique id";
     option (google.api.http) = {
@@ -133,4 +139,11 @@ message GetAlertEventsRequest {
 
 message GetAlertEventsResponse {
   repeated AlertEvent events = 1;
+}
+
+message GetAlertsRequest {
+}
+
+message GetAlertsResponse {
+  repeated Alert alerts = 1;
 }
