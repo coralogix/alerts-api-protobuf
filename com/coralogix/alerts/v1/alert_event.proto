@@ -19,6 +19,7 @@ message AlertEvent {
   google.protobuf.Timestamp occurred_on = 8;
   google.protobuf.StringValue name = 9;
   AlertSnoozed snoozed = 10;
+  AlertEventSubType sub_type = 11;
 
   enum AlertEventType {
     ALERT_EVENT_TYPE_UNSPECIFIED = 0;
@@ -30,5 +31,11 @@ message AlertEvent {
     ALERT_EVENT_TYPE_TIME_RELATIVE = 6;
     ALERT_EVENT_TYPE_METRIC = 7;
     ALERT_EVENT_TYPE_FLOW = 8;
+  }
+
+  enum AlertEventSubType {
+    ALERT_EVENT_SUB_TYPE_UNSPECIFIED = 0;
+    ALERT_EVENT_SUB_TYPE_FLOW = 2;
+    ALERT_EVENT_SUB_TYPE_VOLUME = 3;
   }
 }
