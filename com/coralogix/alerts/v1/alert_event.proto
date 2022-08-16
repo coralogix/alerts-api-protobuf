@@ -35,7 +35,7 @@ message AlertEvent {
 
   enum AlertEventSubType {
     ALERT_EVENT_SUB_TYPE_UNSPECIFIED = 0;
-    ALERT_EVENT_SUB_TYPE_FLOW = 1;
-    ALERT_EVENT_SUB_TYPE_VOLUME = 2;
+    ALERT_EVENT_SUB_TYPE_FLOW = 2;
+    ALERT_EVENT_SUB_TYPE_VOLUME = 3;
   }
 }
