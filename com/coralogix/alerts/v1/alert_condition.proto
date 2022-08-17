@@ -43,6 +43,8 @@ message ConditionParameters {
   google.protobuf.BoolValue notify_on_resolved = 6;
   google.protobuf.BoolValue ignore_infinity = 7;
   RelativeTimeframe relative_timeframe = 8;
+  google.protobuf.BoolValue notify_group_by_only_alerts = 9;
+  google.protobuf.BoolValue notify_per_group_by_value = 10;
 
 }
 
