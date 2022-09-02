@@ -70,6 +70,13 @@ service AlertService {
       get: "/api/v1/alerts/events"
     };
   }
+  rpc ValidateAlert(ValidateAlertRequest) returns (ValidateAlertResponse) {
+    option (audit_log_description).description = "validate alert";
+    option (google.api.http) = {
+      post: "/api/v1/alerts/validate"
+      body: "alert"
+    };
+  }
 }
 
 message GetAlertRequest {
@@ -146,4 +153,10 @@ message GetAlertsRequest {
 
 message GetAlertsResponse {
   repeated Alert alerts = 1;
+}
+
+message ValidateAlertRequest {
+  Alert alert = 1;
+}
+message ValidateAlertResponse {
 }
