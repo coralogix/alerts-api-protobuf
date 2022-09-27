@@ -181,7 +181,7 @@ message GetAlertEventsCountBySeverityResponse {
 message AlertEventsCountBySeverity {
   AlertSeverity severity = 1;
   AlertEventCountType type = 2;
-  AlertEventSubType sub_type = 3;
+  AlertEvent.AlertEventSubType sub_type = 3;
   google.protobuf.Int32Value count = 4;
 }
 
