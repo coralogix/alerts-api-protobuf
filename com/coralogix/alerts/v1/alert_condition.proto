@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.coralogix.alerts.v1;
 
 import "google/protobuf/wrappers.proto";
+import "com/coralogix/alerts/v1/flow_alert.proto";
 
 message AlertCondition {
   oneof condition {
@@ -11,6 +12,7 @@ message AlertCondition {
     MoreThanCondition more_than = 3;
     MoreThanUsualCondition more_than_usual = 4;
     NewValueCondition new_value = 5;
+    FlowCondition flow = 6;
   }
 }
 
@@ -31,6 +33,10 @@ message MoreThanUsualCondition {
 
 message NewValueCondition {
   ConditionParameters parameters = 1;
+}
+
+message FlowCondition {
+  repeated FlowStage stages = 1;
 }
 
 message ConditionParameters {
