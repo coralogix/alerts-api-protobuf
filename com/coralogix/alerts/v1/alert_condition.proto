@@ -56,6 +56,8 @@ message ConditionParameters {
 
 enum Timeframe {
   TIMEFRAME_5_MIN_OR_UNSPECIFIED = 0;
+  TIMEFRAME_1_MIN = 18;
+  TIMEFRAME_2_MIN = 19;
   TIMEFRAME_10_MIN = 1;
   TIMEFRAME_15_MIN = 17;
   TIMEFRAME_20_MIN = 2;
