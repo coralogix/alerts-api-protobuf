@@ -5,12 +5,12 @@ lint:
   use:
     - DEFAULT
   ignore_only:
-    ENUM_ZERO_VALUE_SUFFIX:
-      - FlowOperator
     ENUM_VALUE_PREFIX:
-      - FlowOperator
+      - com/coralogix/alerts/v1/flow_alert.proto
+    ENUM_ZERO_VALUE_SUFFIX:
+      - com/coralogix/alerts/v1/flow_alert.proto
     FIELD_LOWER_SNAKE_CASE:
-      - nextOp
+      - com/coralogix/alerts/v1/flow_alert.proto
 breaking:
   use:
     - WIRE
