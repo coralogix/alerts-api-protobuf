@@ -9,6 +9,8 @@ lint:
       - FlowOperator
     ENUM_VALUE_PREFIX:
       - FlowOperator
+    FIELD_LOWER_SNAKE_CASE:
+      - nextOp
 breaking:
   use:
     - WIRE
