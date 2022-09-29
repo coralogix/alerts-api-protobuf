@@ -4,6 +4,11 @@ deps:
 lint:
   use:
     - DEFAULT
+  ignore_only:
+    ENUM_ZERO_VALUE_SUFFIX:
+      - FlowOperator
+    ENUM_VALUE_PREFIX:
+      - FlowOperator
 breaking:
   use:
     - WIRE
