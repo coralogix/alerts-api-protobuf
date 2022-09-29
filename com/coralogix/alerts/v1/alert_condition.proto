@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.coralogix.alerts.v1;
 
 import "google/protobuf/wrappers.proto";
+import "com/coralogix/alerts/v1/flow_alert.proto";
 
 message AlertCondition {
   oneof condition {
@@ -11,6 +12,7 @@ message AlertCondition {
     MoreThanCondition more_than = 3;
     MoreThanUsualCondition more_than_usual = 4;
     NewValueCondition new_value = 5;
+    FlowCondition flow = 6;
   }
 }
 
@@ -33,6 +35,10 @@ message NewValueCondition {
   ConditionParameters parameters = 1;
 }
 
+message FlowCondition {
+  repeated FlowStage stages = 1;
+}
+
 message ConditionParameters {
   google.protobuf.DoubleValue threshold = 1;
   Timeframe timeframe = 2;
@@ -50,6 +56,8 @@ message ConditionParameters {
 
 enum Timeframe {
   TIMEFRAME_5_MIN_OR_UNSPECIFIED = 0;
+  TIMEFRAME_1_MIN = 18;
+  TIMEFRAME_2_MIN = 19;
   TIMEFRAME_10_MIN = 1;
   TIMEFRAME_15_MIN = 17;
   TIMEFRAME_20_MIN = 2;

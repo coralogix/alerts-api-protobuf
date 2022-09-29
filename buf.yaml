@@ -4,6 +4,13 @@ deps:
 lint:
   use:
     - DEFAULT
+  ignore_only:
+    ENUM_VALUE_PREFIX:
+      - com/coralogix/alerts/v1/flow_alert.proto
+    ENUM_ZERO_VALUE_SUFFIX:
+      - com/coralogix/alerts/v1/flow_alert.proto
+    FIELD_LOWER_SNAKE_CASE:
+      - com/coralogix/alerts/v1/flow_alert.proto
 breaking:
   use:
     - WIRE
