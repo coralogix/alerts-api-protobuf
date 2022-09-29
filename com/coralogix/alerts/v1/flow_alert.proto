@@ -29,7 +29,6 @@ message FlowTimeframe {
 }
 
 enum FlowOperator {
-  AND_OR_UNSPECIFIED = 0;
-  AND = 1;
-  OR = 2;
+  AND = 0;
+  OR = 1;
 }
