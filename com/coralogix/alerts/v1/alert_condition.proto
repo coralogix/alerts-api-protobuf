@@ -13,6 +13,7 @@ message AlertCondition {
     MoreThanUsualCondition more_than_usual = 4;
     NewValueCondition new_value = 5;
     FlowCondition flow = 6;
+    UniqueCountCondition unique_count = 7;
   }
 }
 
@@ -35,6 +36,10 @@ message NewValueCondition {
   ConditionParameters parameters = 1;
 }
 
+message UniqueCountCondition {
+  ConditionParameters parameters = 1;
+}
+
 message FlowCondition {
   repeated FlowStage stages = 1;
 }
@@ -52,6 +57,8 @@ message ConditionParameters {
   google.protobuf.BoolValue notify_group_by_only_alerts = 9;
   google.protobuf.BoolValue notify_per_group_by_value = 10;
 
+  repeated google.protobuf.StringValue cardinality_fields = 11;
+  google.protobuf.UInt32Value max_unique_count_values_for_group_by_key = 12;
 }
 
 enum Timeframe {
@@ -69,6 +76,7 @@ enum Timeframe {
   TIMEFRAME_6_H = 8;
   TIMEFRAME_12_H = 9;
   TIMEFRAME_24_H = 10;
+  TIMEFRAME_36_H = 20;
   TIMEFRAME_48_H = 11;
   TIMEFRAME_72_H = 12;
   TIMEFRAME_1_W = 13;
