@@ -59,6 +59,7 @@ message ConditionParameters {
 
   repeated google.protobuf.StringValue cardinality_fields = 11;
   google.protobuf.UInt32Value max_unique_count_values_for_group_by_key = 12;
+  optional RelatedExtendedData related_extended_data = 13;
 }
 
 enum Timeframe {
@@ -92,6 +93,16 @@ enum RelativeTimeframe {
   RELATIVE_TIMEFRAME_MONTH = 3;
 }
 
+enum CleanupDeadmanDuration {
+  CLEANUP_DEADMAN_DURATION_NEVER_OR_UNSPECIFIED  = 0;
+  CLEANUP_DEADMAN_DURATION_5MIN  = 1;
+  CLEANUP_DEADMAN_DURATION_10MIN = 2;
+  CLEANUP_DEADMAN_DURATION_1H    = 3;
+  CLEANUP_DEADMAN_DURATION_2H    = 4;
+  CLEANUP_DEADMAN_DURATION_6H    = 5;
+  CLEANUP_DEADMAN_DURATION_12H   = 6;
+  CLEANUP_DEADMAN_DURATION_24H   = 7;
+}
 message MetricAlertConditionParameters {
   google.protobuf.StringValue metric_field = 1;
 
@@ -133,4 +144,8 @@ message MetricAlertPromqlConditionParameters {
   google.protobuf.UInt32Value non_null_percentage = 4;
 
   google.protobuf.BoolValue swap_null_values = 5;
+}
+
+message RelatedExtendedData {
+  optional CleanupDeadmanDuration cleanup_deadman_duration = 1;
 }
