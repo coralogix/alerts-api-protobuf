@@ -15,6 +15,7 @@ import "com/coralogix/alerts/v1/date_time.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
 import "com/coralogix/alerts/v1/tracing_alert.proto";
 
 message AuditLogDescription {
@@ -44,6 +45,15 @@ service AlertService {
       get: "/api/v1/alerts/unique/{id}"
     };
   }
+
+  rpc GetAlertModelMapping(AlertModelMappingRequest) returns (AlertModelMappingResponse){
+    option (audit_log_description).description = "create alert mapping";
+    option (google.api.http) = {
+      post: "/api/v1/alert-mapping/"
+      body: "*"
+    };
+  }
+
   rpc CreateAlert(CreateAlertRequest) returns (CreateAlertResponse) {
     option (audit_log_description).description = "create alert";
     option (google.api.http) = {
@@ -128,6 +138,35 @@ message CreateAlertRequest {
 
 message CreateAlertResponse {
   Alert alert = 1;
+}
+
+message AlertModelMappingRequest {
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue description = 3;
+
+  google.protobuf.BoolValue is_active = 4;
+
+  AlertSeverity severity = 5;
+  Date expiration = 6;
+
+  AlertCondition condition = 7;
+  AlertNotifications notifications = 8;
+  AlertFilters filters = 9;
+
+  google.protobuf.DoubleValue notify_every = 10;
+
+  AlertActiveWhen active_when = 11;
+
+  repeated google.protobuf.StringValue notification_payload_filters = 12;
+
+  repeated MetaLabel meta_labels = 13;
+  repeated google.protobuf.StringValue meta_labels_strings = 14;
+
+  optional TracingAlert tracing_alert = 15;
+}
+
+message AlertModelMappingResponse {
+  google.protobuf.Struct alertDefinition = 1;
 }
 
 message UpdateAlertRequest {
