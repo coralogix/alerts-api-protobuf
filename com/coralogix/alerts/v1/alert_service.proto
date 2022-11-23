@@ -46,7 +46,7 @@ service AlertService {
     };
   }
 
-  rpc GetAlertModelMapping(AlertModelMappingRequest) returns (AlertModelMappingResponse){
+  rpc GetAlertModelMapping(GetAlertModelMappingRequest) returns (GetAlertModelMappingResponse){
     option (audit_log_description).description = "create alert mapping";
     option (google.api.http) = {
       post: "/api/v1/alert-mapping/"
@@ -140,7 +140,7 @@ message CreateAlertResponse {
   Alert alert = 1;
 }
 
-message AlertModelMappingRequest {
+message GetAlertModelMappingRequest {
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue description = 3;
 
@@ -165,8 +165,8 @@ message AlertModelMappingRequest {
   optional TracingAlert tracing_alert = 15;
 }
 
-message AlertModelMappingResponse {
-  google.protobuf.Struct alertDefinition = 1;
+message GetAlertModelMappingResponse {
+  google.protobuf.Struct alert_definition = 1;
 }
 
 message UpdateAlertRequest {
