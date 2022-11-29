@@ -148,4 +148,5 @@ message MetricAlertPromqlConditionParameters {
 
 message RelatedExtendedData {
   optional CleanupDeadmanDuration cleanup_deadman_duration = 1;
+  optional google.protobuf.BoolValue should_trigger_deadman = 2;
 }
