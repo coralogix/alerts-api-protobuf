@@ -68,10 +68,23 @@ service AlertService {
       body: "alert"
     };
   }
+  rpc UpdateAlertByUniqueId(UpdateAlertRequest) returns (UpdateAlertResponse) {
+    option (audit_log_description).description = "update alert";
+    option (google.api.http) = {
+      put: "/api/v1/alerts/unique/{alert.unique_identifier}"
+      body: "alert"
+    };
+  }
   rpc DeleteAlert(DeleteAlertRequest) returns (DeleteAlertResponse) {
     option (audit_log_description).description = "delete alert";
     option (google.api.http) = {
-      delete: "/api/v1/alerts/{id}"
+      delete: "/api/v1/alerts/{alertid}"
+    };
+  }
+  rpc DeleteAlertByUniqueId(DeleteAlertRequest) returns (DeleteAlertResponse) {
+    option (audit_log_description).description = "delete alert";
+    option (google.api.http) = {
+      delete: "/api/v1/alerts/unique/{id}"
     };
   }
   rpc GetAlertEvents(GetAlertEventsRequest) returns (GetAlertEventsResponse) {
