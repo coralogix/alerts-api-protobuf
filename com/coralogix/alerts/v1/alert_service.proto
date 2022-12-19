@@ -68,10 +68,23 @@ service AlertService {
       body: "alert"
     };
   }
+  rpc UpdateAlertByUniqueId(UpdateAlertByUniqueIdRequest) returns (UpdateAlertByUniqueIdResponse) {
+    option (audit_log_description).description = "update alert";
+    option (google.api.http) = {
+      put: "/api/v1/alerts/unique/{alert.unique_identifier}"
+      body: "alert"
+    };
+  }
   rpc DeleteAlert(DeleteAlertRequest) returns (DeleteAlertResponse) {
     option (audit_log_description).description = "delete alert";
     option (google.api.http) = {
-      delete: "/api/v1/alerts/{id}"
+      delete: "/api/v1/alerts/{alertid}"
+    };
+  }
+  rpc DeleteAlertByUniqueId(DeleteAlertByUniqueIdRequest) returns (DeleteAlertByUniqueIdResponse) {
+    option (audit_log_description).description = "delete alert";
+    option (google.api.http) = {
+      delete: "/api/v1/alerts/unique/{id}"
     };
   }
   rpc GetAlertEvents(GetAlertEventsRequest) returns (GetAlertEventsResponse) {
@@ -177,11 +190,26 @@ message UpdateAlertResponse {
   Alert alert = 1;
 }
 
+message UpdateAlertByUniqueIdRequest {
+  Alert alert = 1;
+}
+
+message UpdateAlertByUniqueIdResponse {
+  Alert alert = 1;
+}
+
 message DeleteAlertRequest {
   google.protobuf.StringValue id = 1;
 }
 
 message DeleteAlertResponse {
+}
+
+message DeleteAlertByUniqueIdRequest {
+  google.protobuf.StringValue id = 1;
+}
+
+message DeleteAlertByUniqueIdResponse {
 }
 
 message GetAlertEventsRequest {
