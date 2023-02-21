@@ -1,110 +1,103 @@
 syntax = "proto3";
 
-package com.coralogix.alerts.v1;
+package com.coralogix.alerts.v2;
 
 import "google/protobuf/wrappers.proto";
 
-import "com/coralogix/alerts/v1/alert.proto";
+import "com/coralogix/alerts/v2/alert.proto";
 import "com/coralogix/alerts/v1/alert_event.proto";
+import "com/coralogix/alerts/v1/alert_meta_label.proto";
 import "com/coralogix/alerts/v1/alert_severity.proto";
 import "com/coralogix/alerts/v1/alert_condition.proto";
-import "com/coralogix/alerts/v1/alert_notifications.proto";
 import "com/coralogix/alerts/v1/alert_filters.proto";
-import "com/coralogix/alerts/v1/alert_meta_label.proto";
+import "com/coralogix/alerts/v1/alert_service.proto";
 import "com/coralogix/alerts/v1/alert_active_when.proto";
 import "com/coralogix/alerts/v1/date_time.proto";
+import "com/coralogix/alerts/v2/alert_notification_group.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
 import "com/coralogix/alerts/v1/tracing_alert.proto";
-
-message AuditLogDescription {
-  optional string description = 1;
-}
-
-extend google.protobuf.MethodOptions {
-  optional AuditLogDescription audit_log_description = 5000;
-}
 
 service AlertService {
   rpc GetAlert(GetAlertRequest) returns (GetAlertResponse) {
-    option (audit_log_description).description = "get alert";
+    option (v1.audit_log_description).description = "get alert";
     option (google.api.http) = {
-      get: "/api/v1/alerts/{id}"
+      get: "/api/v2/alerts/{id}"
     };
   }
   rpc GetAlerts(GetAlertsRequest) returns (GetAlertsResponse) {
-    option (audit_log_description).description = "get alerts";
+    option (v1.audit_log_description).description = "get alerts";
     option (google.api.http) = {
-      get: "/api/v1/alerts"
+      get: "/api/v2/alerts"
     };
   }
   rpc GetAlertByUniqueId(GetAlertByUniqueIdRequest) returns (GetAlertByUniqueIdResponse) {
-    option (audit_log_description).description = "get alert by unique id";
+    option (v1.audit_log_description).description = "get alert by unique id";
     option (google.api.http) = {
-      get: "/api/v1/alerts/unique/{id}"
+      get: "/api/v2/alerts/unique/{id}"
     };
   }
 
   rpc GetAlertModelMapping(GetAlertModelMappingRequest) returns (GetAlertModelMappingResponse){
-    option (audit_log_description).description = "get alert mapping";
+    option (v1.audit_log_description).description = "get alert mapping";
     option (google.api.http) = {
-      post: "/api/v1/alert-mapping/"
+      post: "/api/v2/alert-mapping/"
       body: "*"
     };
   }
 
   rpc CreateAlert(CreateAlertRequest) returns (CreateAlertResponse) {
-    option (audit_log_description).description = "create alert";
+    option (v1.audit_log_description).description = "create alert";
     option (google.api.http) = {
-      post: "/api/v1/alerts/"
+      post: "/api/v2/alerts/"
       body: "*"
     };
   }
   rpc UpdateAlert(UpdateAlertRequest) returns (UpdateAlertResponse) {
-    option (audit_log_description).description = "update alert";
+    option (v1.audit_log_description).description = "update alert";
     option (google.api.http) = {
-      put: "/api/v1/alerts/{alert.id}"
+      put: "/api/v2/alerts/{alert.id}"
       body: "alert"
     };
   }
   rpc UpdateAlertByUniqueId(UpdateAlertByUniqueIdRequest) returns (UpdateAlertByUniqueIdResponse) {
-    option (audit_log_description).description = "update alert";
+    option (v1.audit_log_description).description = "update alert";
     option (google.api.http) = {
-      put: "/api/v1/alerts/unique/{alert.unique_identifier}"
+      put: "/api/v2/alerts/unique/{alert.unique_identifier}"
       body: "alert"
     };
   }
   rpc DeleteAlert(DeleteAlertRequest) returns (DeleteAlertResponse) {
-    option (audit_log_description).description = "delete alert";
+    option (v1.audit_log_description).description = "delete alert";
     option (google.api.http) = {
-      delete: "/api/v1/alerts/{alertid}"
+      delete: "/api/v2/alerts/{alertid}"
     };
   }
   rpc DeleteAlertByUniqueId(DeleteAlertByUniqueIdRequest) returns (DeleteAlertByUniqueIdResponse) {
-    option (audit_log_description).description = "delete alert";
+    option (v1.audit_log_description).description = "delete alert";
     option (google.api.http) = {
-      delete: "/api/v1/alerts/unique/{id}"
+      delete: "/api/v2/alerts/unique/{id}"
     };
   }
   rpc GetAlertEvents(GetAlertEventsRequest) returns (GetAlertEventsResponse) {
-    option (audit_log_description).description = "get alert events";
+    option (v1.audit_log_description).description = "get alert events";
     option (google.api.http) = {
-      get: "/api/v1/alerts/events"
+      get: "/api/v2/alerts/events"
     };
   }
   rpc ValidateAlert(ValidateAlertRequest) returns (ValidateAlertResponse) {
-    option (audit_log_description).description = "validate alert";
+    option (v1.audit_log_description).description = "validate alert";
     option (google.api.http) = {
-      post: "/api/v1/alerts/validate"
+      post: "/api/v2/alerts/validate"
       body: "alert"
     };
   }
   rpc GetAlertEventsCountBySeverity(GetAlertEventsCountBySeverityRequest) returns (GetAlertEventsCountBySeverityResponse) {
-    option (audit_log_description).description = "get alert events count by severity";
+    option (v1.audit_log_description).description = "get alert events count by severity";
     option (google.api.http) = {
-      get: "/api/v1/alerts/events/count-by-severity"
+      get: "/api/v2/alerts/events/count-by-severity"
     };
   }
 }
@@ -131,23 +124,22 @@ message CreateAlertRequest {
 
   google.protobuf.BoolValue is_active = 4;
 
-  AlertSeverity severity = 5;
-  Date expiration = 6;
+  v1.AlertSeverity severity = 5;
+  v1.Date expiration = 6;
 
-  AlertCondition condition = 7;
-  AlertNotifications notifications = 8;
-  AlertFilters filters = 9;
+  v1.AlertCondition condition = 7;
+  optional ShowInInsight show_in_insight = 8;
+  repeated AlertNotificationGroups notification_groups = 9;
+  v1.AlertFilters filters = 10;
 
-  google.protobuf.DoubleValue notify_every = 10;
-
-  AlertActiveWhen active_when = 11;
+  v1.AlertActiveWhen active_when = 11;
 
   repeated google.protobuf.StringValue notification_payload_filters = 12;
 
-  repeated MetaLabel meta_labels = 13;
+  repeated v1.MetaLabel meta_labels = 13;
   repeated google.protobuf.StringValue meta_labels_strings = 14;
 
-  optional TracingAlert tracing_alert = 15;
+  optional v1.TracingAlert tracing_alert = 15;
 }
 
 message CreateAlertResponse {
@@ -160,23 +152,22 @@ message GetAlertModelMappingRequest {
 
   google.protobuf.BoolValue is_active = 4;
 
-  AlertSeverity severity = 5;
-  Date expiration = 6;
+  v1.AlertSeverity severity = 5;
+  v1.Date expiration = 6;
 
-  AlertCondition condition = 7;
-  AlertNotifications notifications = 8;
-  AlertFilters filters = 9;
+  v1.AlertCondition condition = 7;
+  optional ShowInInsight show_in_insight = 8;
+  repeated AlertNotificationGroups notification_groups = 9;
+  v1.AlertFilters filters = 10;
 
-  google.protobuf.DoubleValue notify_every = 10;
-
-  AlertActiveWhen active_when = 11;
+  v1.AlertActiveWhen active_when = 11;
 
   repeated google.protobuf.StringValue notification_payload_filters = 12;
 
-  repeated MetaLabel meta_labels = 13;
+  repeated v1.MetaLabel meta_labels = 13;
   repeated google.protobuf.StringValue meta_labels_strings = 14;
 
-  optional TracingAlert tracing_alert = 15;
+  optional v1.TracingAlert tracing_alert = 15;
 }
 
 message GetAlertModelMappingResponse {
@@ -198,11 +189,22 @@ message UpdateAlertByUniqueIdRequest {
 message UpdateAlertByUniqueIdResponse {
   Alert alert = 1;
 }
+message GetAlertsRequest {
+}
+
+message GetAlertsResponse {
+  repeated Alert alerts = 1;
+}
+
+message ValidateAlertRequest {
+  Alert alert = 1;
+}
+message ValidateAlertResponse {
+}
 
 message DeleteAlertRequest {
   google.protobuf.StringValue id = 1;
 }
-
 message DeleteAlertResponse {
 }
 
@@ -219,20 +221,7 @@ message GetAlertEventsRequest {
 }
 
 message GetAlertEventsResponse {
-  repeated AlertEvent events = 1;
-}
-
-message GetAlertsRequest {
-}
-
-message GetAlertsResponse {
-  repeated Alert alerts = 1;
-}
-
-message ValidateAlertRequest {
-  Alert alert = 1;
-}
-message ValidateAlertResponse {
+  repeated v1.AlertEvent events = 1;
 }
 
 message GetAlertEventsCountBySeverityRequest {
@@ -247,14 +236,8 @@ message GetAlertEventsCountBySeverityResponse {
 }
 
 message AlertEventsCountBySeverity {
-  AlertSeverity severity = 1;
-  AlertEventCountType type = 2;
-  AlertEvent.AlertEventSubType sub_type = 3;
+  v1.AlertSeverity severity = 1;
+  v1.AlertEventCountType type = 2;
+  v1.AlertEvent.AlertEventSubType sub_type = 3;
   google.protobuf.Int32Value count = 4;
-}
-
-enum AlertEventCountType {
-  ALERT_EVENT_COUNT_TYPE_UNSPECIFIED = 0;
-  ALERT_EVENT_COUNT_TYPE_ALERT = 1;
-  ALERT_EVENT_COUNT_TYPE_ANOMALY = 2;
 }
