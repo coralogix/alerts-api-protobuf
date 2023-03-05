@@ -7,8 +7,10 @@ lint:
   ignore_only:
     ENUM_VALUE_PREFIX:
       - com/coralogix/alerts/v1/flow_alert.proto
+      - com/coralogix/alerts/v2/alert_notification_group.proto
     ENUM_ZERO_VALUE_SUFFIX:
       - com/coralogix/alerts/v1/flow_alert.proto
+      - com/coralogix/alerts/v2/alert_notification_group.proto
     FIELD_LOWER_SNAKE_CASE:
       - com/coralogix/alerts/v1/flow_alert.proto
 breaking:
