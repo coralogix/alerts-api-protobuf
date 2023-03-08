@@ -107,8 +107,8 @@ service AlertService {
       get: "/api/v1/alerts/events/count-by-severity"
     };
   }
-  rpc GetAlertCompanyLimit(GetAlertCompanyLimitRequest) returns (GetAlertCompanyLimitResponse) {
-    option (v1.audit_log_description).description = "get alert company limit";
+  rpc GetCompanyAlertsLimit(GetCompanyAlertsLimitRequest) returns (GetCompanyAlertsLimitResponse) {
+    option (v1.audit_log_description).description = "get company alerts limit";
     option (google.api.http) = {
       get: "/api/v2/alerts/company-limit"
     };
@@ -265,9 +265,9 @@ enum AlertEventCountType {
   ALERT_EVENT_COUNT_TYPE_ANOMALY = 2;
 }
 
-message GetAlertCompanyLimitRequest {}
+message GetCompanyAlertsLimitRequest {}
 
-message GetAlertCompanyLimitResponse {
+message GetCompanyAlertsLimitResponse {
   google.protobuf.StringValue company_id = 1;
   google.protobuf.Int32Value limit = 2;
   google.protobuf.Int32Value used = 3;
