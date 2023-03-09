@@ -100,6 +100,12 @@ service AlertService {
       get: "/api/v2/alerts/events/count-by-severity"
     };
   }
+  rpc GetCompanyAlertsLimit(GetCompanyAlertsLimitRequest) returns (GetCompanyAlertsLimitResponse) {
+    option (v1.audit_log_description).description = "get company alerts limit";
+    option (google.api.http) = {
+      get: "/api/v2/alerts/company-limit"
+    };
+  }
 }
 
 message GetAlertRequest {
@@ -240,4 +246,12 @@ message AlertEventsCountBySeverity {
   v1.AlertEventCountType type = 2;
   v1.AlertEvent.AlertEventSubType sub_type = 3;
   google.protobuf.Int32Value count = 4;
+}
+
+message GetCompanyAlertsLimitRequest {}
+
+message GetCompanyAlertsLimitResponse {
+  google.protobuf.StringValue company_id = 1;
+  google.protobuf.Int32Value limit = 2;
+  google.protobuf.Int32Value used = 3;
 }

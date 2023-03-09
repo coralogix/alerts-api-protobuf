@@ -110,7 +110,7 @@ service AlertService {
   rpc GetCompanyAlertsLimit(GetCompanyAlertsLimitRequest) returns (GetCompanyAlertsLimitResponse) {
     option (v1.audit_log_description).description = "get company alerts limit";
     option (google.api.http) = {
-      get: "/api/v2/alerts/company-limit"
+      get: "/api/v1/alerts/company-limit"
     };
   }
 }
