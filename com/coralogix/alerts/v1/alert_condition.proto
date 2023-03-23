@@ -42,6 +42,7 @@ message UniqueCountCondition {
 
 message FlowCondition {
   repeated FlowStage stages = 1;
+  optional ConditionParameters parameters = 2;
 }
 
 message ConditionParameters {
