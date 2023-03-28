@@ -26,6 +26,7 @@ message LessThanCondition {
 
 message MoreThanCondition {
   ConditionParameters parameters = 1;
+  optional EvaluationWindow evaluation_window = 2;
 }
 
 message MoreThanUsualCondition {
@@ -104,6 +105,11 @@ enum CleanupDeadmanDuration {
   CLEANUP_DEADMAN_DURATION_12H   = 6;
   CLEANUP_DEADMAN_DURATION_24H   = 7;
 }
+enum EvaluationWindow {
+  EVALUATION_WINDOW_ROLLING_OR_UNSPECIFIED = 0;
+  EVALUATION_WINDOW_DYNAMIC = 1;
+}
+
 message MetricAlertConditionParameters {
   google.protobuf.StringValue metric_field = 1;
 

@@ -27,6 +27,7 @@ message LessThanCondition {
 
 message MoreThanCondition {
   ConditionParameters parameters = 1;
+  optional v1.EvaluationWindow evaluation_window = 2;
 }
 
 message MoreThanUsualCondition {
