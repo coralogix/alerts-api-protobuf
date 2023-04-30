@@ -4,4 +4,10 @@ deps:
   - remote: buf.build
     owner: googleapis
     repository: googleapis
-    commit: e9fcfb66f77242e5b8fd4564d7a01033
+    commit: 5ae7f88519b04fe1965da0f8a375a088
+    digest: shake256:27d9fcdc0e3eb957449dc3d17e2d24c7ce59c3c483ecf128818183c336dfd28595ecd13771fb3172247775caf7707c4076dd8e70c5ac2cbcac170df35e4d0028
+  - remote: buf.build
+    owner: scalapb
+    repository: scalapb
+    commit: 4b8e0968b1ea452983e157014defba1a
+    digest: shake256:f9b8fab5a144a381f2d209aec7096a118fd0cec43c3aa383c2c473bd6dc2e91e50609628c160287966359e3226c3d689a510a17a1a8ef59313a353476bdf515d
