@@ -4,6 +4,8 @@ package com.coralogix.alerts.v1;
 
 import "google/protobuf/wrappers.proto";
 
+option go_package = "com/coralogixapis/alerts/v1";
+
 message AlertFilters {
   enum LogSeverity {
     LOG_SEVERITY_DEBUG_OR_UNSPECIFIED = 0;

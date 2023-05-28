@@ -4,6 +4,8 @@ package com.coralogix.alerts.v1;
 
 import "com/coralogix/alerts/v1/date_time.proto";
 
+option go_package = "com/coralogixapis/alerts/v1";
+
 message AlertActiveWhen {
   repeated AlertActiveTimeframe timeframes = 1;
 }

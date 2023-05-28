@@ -19,6 +19,8 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 import "com/coralogix/alerts/v1/tracing_alert.proto";
 
+option go_package = "com/coralogixapis/alerts/v1";
+
 message AuditLogDescription {
   optional string description = 1;
 }
