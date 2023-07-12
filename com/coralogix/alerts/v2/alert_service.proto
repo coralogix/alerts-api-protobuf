@@ -254,4 +254,7 @@ message GetCompanyAlertsLimitResponse {
   google.protobuf.StringValue company_id = 1;
   google.protobuf.Int32Value limit = 2;
   google.protobuf.Int32Value used = 3;
+  google.protobuf.Int32Value dynamic_alert_limit = 4;
+  google.protobuf.Int32Value dynamic_alert_used = 5;
+  
 }
