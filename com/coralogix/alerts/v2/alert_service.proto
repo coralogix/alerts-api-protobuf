@@ -13,6 +13,7 @@ import "com/coralogix/alerts/v1/alert_filters.proto";
 import "com/coralogix/alerts/v1/alert_service.proto";
 import "com/coralogix/alerts/v1/alert_active_when.proto";
 import "com/coralogix/alerts/v1/date_time.proto";
+import "com/coralogix/alerts/v1/fields_to_update.proto";
 import "com/coralogix/alerts/v2/alert_notification_group.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
@@ -182,6 +183,7 @@ message GetAlertModelMappingResponse {
 
 message UpdateAlertRequest {
   Alert alert = 1;
+  repeated v1.FieldsToUpdate fields_to_update = 2;
 }
 
 message UpdateAlertResponse {
@@ -190,6 +192,7 @@ message UpdateAlertResponse {
 
 message UpdateAlertByUniqueIdRequest {
   Alert alert = 1;
+  repeated v1.FieldsToUpdate fields_to_update = 2;
 }
 
 message UpdateAlertByUniqueIdResponse {

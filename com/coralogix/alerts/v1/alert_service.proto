@@ -18,6 +18,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 import "com/coralogix/alerts/v1/tracing_alert.proto";
+import "com/coralogix/alerts/v1/fields_to_update.proto";
 
 message AuditLogDescription {
   optional string description = 1;
@@ -191,6 +192,7 @@ message GetAlertModelMappingResponse {
 
 message UpdateAlertRequest {
   Alert alert = 1;
+  repeated FieldsToUpdate fields_to_update = 2;
 }
 
 message UpdateAlertResponse {
@@ -199,10 +201,12 @@ message UpdateAlertResponse {
 
 message UpdateAlertByUniqueIdRequest {
   Alert alert = 1;
+  repeated FieldsToUpdate fields_to_update = 2;
 }
 
 message UpdateAlertByUniqueIdResponse {
   Alert alert = 1;
+  repeated FieldsToUpdate fields_to_update = 2;
 }
 
 message DeleteAlertRequest {
