@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.coralogix.alerts.v1;
 
 import "google/protobuf/wrappers.proto";
+import "scalapb/scalapb.proto";
 
 message AlertFilters {
   enum LogSeverity {
@@ -17,6 +18,8 @@ message AlertFilters {
   repeated LogSeverity severities = 1;
 
   message MetadataFilters {
+    option (scalapb.message).type = "com.coralogix.alerts.v1.AlertFilters.MetadataFilters";
+    option (scalapb.message).no_default_values_in_constructor = true;
     repeated google.protobuf.StringValue categories = 1;
     repeated google.protobuf.StringValue applications = 2;
     repeated google.protobuf.StringValue subsystems = 3;
