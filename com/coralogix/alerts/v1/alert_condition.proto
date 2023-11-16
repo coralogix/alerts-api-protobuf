@@ -14,6 +14,9 @@ message AlertCondition {
     NewValueCondition new_value = 5;
     FlowCondition flow = 6;
     UniqueCountCondition unique_count = 7;
+    // TODO: LTU is associated with number 6 in other services, double-check if
+    //       this may cause any issues.
+    LessThanUsualCondition less_than_usual = 8;
   }
 }
 
@@ -30,6 +33,10 @@ message MoreThanCondition {
 }
 
 message MoreThanUsualCondition {
+  ConditionParameters parameters = 1;
+}
+
+message LessThanUsualCondition {
   ConditionParameters parameters = 1;
 }
 
