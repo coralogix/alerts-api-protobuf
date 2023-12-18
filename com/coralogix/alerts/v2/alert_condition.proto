@@ -50,6 +50,7 @@ message UniqueCountCondition {
 message FlowCondition {
   repeated v1.FlowStage stages = 1;
   optional ConditionParameters parameters = 2;
+  google.protobuf.BoolValue enforce_suppression = 3;
 }
 
 message ConditionParameters {
