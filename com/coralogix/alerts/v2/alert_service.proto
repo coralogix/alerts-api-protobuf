@@ -15,7 +15,6 @@ import "com/coralogix/alerts/v1/alert_active_when.proto";
 import "com/coralogix/alerts/v1/date_time.proto";
 import "com/coralogix/alerts/v1/fields_to_update.proto";
 import "com/coralogix/alerts/v2/alert_notification_group.proto";
-import "com/coralogix/alerts/v2/alert_incident_settings.proto";
 import "google/protobuf/descriptor.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
@@ -138,7 +137,6 @@ message CreateAlertRequest {
   AlertCondition condition = 7;
   optional ShowInInsight show_in_insight = 8;
   repeated AlertNotificationGroups notification_groups = 9;
-  optional AlertIncidentSettings incident_settings = 16;
   v1.AlertFilters filters = 10;
 
   v1.AlertActiveWhen active_when = 11;
@@ -167,7 +165,6 @@ message GetAlertModelMappingRequest {
   AlertCondition condition = 7;
   optional ShowInInsight show_in_insight = 8;
   repeated AlertNotificationGroups notification_groups = 9;
-  optional AlertIncidentSettings incident_settings = 16;
   v1.AlertFilters filters = 10;
 
   v1.AlertActiveWhen active_when = 11;
