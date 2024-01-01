@@ -13,6 +13,7 @@ import "com/coralogix/alerts/v1/alert_filters.proto";
 import "com/coralogix/alerts/v1/alert_active_when.proto";
 import "com/coralogix/alerts/v1/date_time.proto";
 import "com/coralogix/alerts/v1/tracing_alert.proto";
+import "com/coralogix/alerts/v2/alert_incident_settings.proto";
 
 message Alert {
   google.protobuf.StringValue id = 1;
@@ -27,8 +28,8 @@ message Alert {
   AlertCondition condition = 7;
   optional ShowInInsight show_in_insight = 8;
   repeated AlertNotificationGroups notification_groups = 9 ;
+  optional AlertIncidentSettings incident_settings = 17;
   v1.AlertFilters filters = 10;
-
 
   v1.AlertActiveWhen active_when = 11;
 
