@@ -13,6 +13,8 @@ import "com/coralogix/alerts/v1/alert_active_when.proto";
 import "com/coralogix/alerts/v1/date_time.proto";
 import "com/coralogix/alerts/v1/tracing_alert.proto";
 
+option go_package = "com/coralogixapis/alerts/v1";
+
 message Alert {
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;

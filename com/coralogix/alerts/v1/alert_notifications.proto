@@ -4,6 +4,8 @@ package com.coralogix.alerts.v1;
 
 import "google/protobuf/wrappers.proto";
 
+option go_package = "com/coralogixapis/alerts/v1";
+
 message AlertNotifications {
   repeated google.protobuf.StringValue emails = 1;
   repeated google.protobuf.StringValue integrations = 2;

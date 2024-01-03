@@ -4,6 +4,8 @@ package com.coralogix.alerts.v2;
 
 import "google/protobuf/wrappers.proto";
 
+option go_package = "com/coralogixapis/alerts/v2";
+
 message ShowInInsight {
   optional google.protobuf.UInt32Value retriggering_period_seconds = 1;
   optional NotifyOn notify_on = 2;
