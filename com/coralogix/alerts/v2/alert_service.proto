@@ -21,18 +21,42 @@ import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "com/coralogix/alerts/v1/tracing_alert.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
 service AlertService {
+  option (com.coralogix.openapi.v1.service) = {
+    description: "API to define, query, and manage your alerts"
+    resource_name: "Alert"
+  };
   rpc GetAlert(GetAlertRequest) returns (GetAlertResponse) {
     option (v1.audit_log_description).description = "get alert";
     option (google.api.http) = {
       get: "/api/v2/alerts/{id}"
+
+      additional_bindings: {
+        get: "/v1/alerts/{id}"
+        response_body: "alert"
+      };
+    };
+    option (com.coralogix.openapi.v1.method) = {
+      http_rule_index: 1
+      resource: true
+      description: "Gets alert by id"
     };
   }
   rpc GetAlerts(GetAlertsRequest) returns (GetAlertsResponse) {
     option (v1.audit_log_description).description = "get alerts";
     option (google.api.http) = {
       get: "/api/v2/alerts"
+
+      additional_bindings: {
+        get: "/v1/alerts"
+      };
+    };
+    option (com.coralogix.openapi.v1.method) = {
+      http_rule_index: 1
+      datasource: true
+      description: "Lists alerts"
     };
   }
   rpc GetAlertByUniqueId(GetAlertByUniqueIdRequest) returns (GetAlertByUniqueIdResponse) {
@@ -55,6 +79,20 @@ service AlertService {
     option (google.api.http) = {
       post: "/api/v2/alerts/"
       body: "*"
+
+      additional_bindings: {
+        post: "/v1/alerts"
+        body: "*"
+        response_body: "alert"
+      };
+    };
+    option (com.coralogix.openapi.v1.method) = {
+      http_rule_index: 1
+      resource: true
+      description: "Creates alert"
+      extensions: [
+        {key: "x-codegen-request-body-name" value: "\"AlertPrototype\""}
+      ]
     };
   }
   rpc UpdateAlert(UpdateAlertRequest) returns (UpdateAlertResponse) {
@@ -62,6 +100,22 @@ service AlertService {
     option (google.api.http) = {
       put: "/api/v2/alerts/{alert.id}"
       body: "alert"
+
+      additional_bindings: {
+        put: "/v1/alerts/{alert.id}"
+        body: "alert"
+        response_body: "alert"
+      };
+    };
+    option (com.coralogix.openapi.v1.method) = {
+      http_rule_index: 1
+      resource: true
+      description: "Updates alert"
+      request_schema: "AlertPrototype"
+      path_parameter_name: "id"
+      extensions: [
+        {key: "x-codegen-request-body-name" value: "\"AlertPrototype\""}
+      ]
     };
   }
   rpc UpdateAlertByUniqueId(UpdateAlertByUniqueIdRequest) returns (UpdateAlertByUniqueIdResponse) {
@@ -75,7 +129,17 @@ service AlertService {
     option (v1.audit_log_description).description = "delete alert";
     option (google.api.http) = {
       delete: "/api/v2/alerts/{alertid}"
+
+      additional_bindings: {
+        delete: "/v1/alerts/{id}"
+      };
     };
+    option (com.coralogix.openapi.v1.method) = {
+      http_rule_index: 1
+      resource: true
+      description: "Deletes alert"
+    };
+
   }
   rpc DeleteAlertByUniqueId(DeleteAlertByUniqueIdRequest) returns (DeleteAlertByUniqueIdResponse) {
     option (v1.audit_log_description).description = "delete alert";
@@ -111,7 +175,7 @@ service AlertService {
 }
 
 message GetAlertRequest {
-  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue id = 1 [(com.coralogix.openapi.v1.field) = { required: true, description: "Alert id", format: "uuid", min_length: 36, max_length: 36, example: "\"3dc02998-0b50-4ea8-b68a-4779d716fa1f\""  } ];
 }
 
 message GetAlertResponse {
@@ -127,17 +191,22 @@ message GetAlertByUniqueIdResponse {
 }
 
 message CreateAlertRequest {
-  google.protobuf.StringValue name = 2;
+  option (com.coralogix.openapi.v1.message) = {
+    name: "AlertPrototype"
+    description: "Alert to create"
+  };
+
+  google.protobuf.StringValue name = 2 [(com.coralogix.openapi.v1.field) = { required: true } ];
   google.protobuf.StringValue description = 3;
 
-  google.protobuf.BoolValue is_active = 4;
+  google.protobuf.BoolValue is_active = 4 [(com.coralogix.openapi.v1.field) = { required: true } ];
 
   v1.AlertSeverity severity = 5;
   v1.Date expiration = 6;
 
-  AlertCondition condition = 7;
+  AlertCondition condition = 7 [(com.coralogix.openapi.v1.field) = { required: true } ];
   optional ShowInInsight show_in_insight = 8;
-  repeated AlertNotificationGroups notification_groups = 9;
+  repeated AlertNotificationGroups notification_groups = 9 [(com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
   optional AlertIncidentSettings incident_settings = 16;
   v1.AlertFilters filters = 10;
 
@@ -205,6 +274,10 @@ message GetAlertsRequest {
 }
 
 message GetAlertsResponse {
+  option (com.coralogix.openapi.v1.message) = {
+    name: "AlertCollection"
+    description: "Alerts collection"
+  };
   repeated Alert alerts = 1;
 }
 

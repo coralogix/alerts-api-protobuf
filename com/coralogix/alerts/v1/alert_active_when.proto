@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.coralogix.alerts.v1;
 
 import "com/coralogix/alerts/v1/date_time.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
 message AlertActiveWhen {
   repeated AlertActiveTimeframe timeframes = 1;
@@ -24,6 +25,6 @@ enum DayOfWeek {
 }
 
 message TimeRange {
-  Time start = 1;
-  Time end = 2;
+  Time start = 1 [(com.coralogix.openapi.v1.field) = {required: true}];
+  Time end = 2 [(com.coralogix.openapi.v1.field) = {required: true}];
 }
