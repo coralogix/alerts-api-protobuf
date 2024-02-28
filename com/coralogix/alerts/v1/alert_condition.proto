@@ -4,6 +4,7 @@ package com.coralogix.alerts.v1;
 
 import "google/protobuf/wrappers.proto";
 import "com/coralogix/alerts/v1/flow_alert.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
 message AlertCondition {
   oneof condition {
@@ -117,6 +118,7 @@ enum EvaluationWindow {
 }
 
 message MetricAlertConditionParameters {
+
   google.protobuf.StringValue metric_field = 1;
 
   enum MetricSource {
@@ -148,7 +150,10 @@ message MetricAlertConditionParameters {
 
 message MetricAlertPromqlConditionParameters {
 
-  google.protobuf.StringValue promql_text = 1;
+  google.protobuf.StringValue promql_text = 1 [ (com.coralogix.openapi.v1.field) = {
+    description: "The promql text of the metric alert by fields for the alert condition"
+    required: true
+  } ];
 
   google.protobuf.UInt32Value arithmetic_operator_modifier = 2;
 

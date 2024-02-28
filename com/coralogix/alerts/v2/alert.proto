@@ -57,6 +57,7 @@ message Alert {
   } ];
   // Alert condition
   AlertCondition condition = 7 [ (com.coralogix.openapi.v1.field) = {
+    description: "Alert Condition"
     required : true,
   } ];
   // Alert show in insight
