@@ -57,17 +57,21 @@ message Alert {
   } ];
   // Alert condition
   AlertCondition condition = 7 [ (com.coralogix.openapi.v1.field) = {
+    description: "Alert Condition"
     required : true,
   } ];
+
   // Alert show in insight
   optional ShowInInsight show_in_insight = 8 [ deprecated = true];
+
   // Alert notification groups
   repeated AlertNotificationGroups notification_groups = 9 [ (com.coralogix.openapi.v1.field) = {
     description : "Alert notification groups"
-    min_items:0,
-    max_items:10
-    required: false
+    min_items: 1,
+    max_items: 10
+    required: true
   }];
+
   // Alert incident settings
   optional AlertIncidentSettings incident_settings = 17 [ (com.coralogix.openapi.v1.field) = {
     description : "Incident settings, will create the incident based on this configuration"
@@ -86,7 +90,7 @@ message Alert {
   }];
 
   // Alert notification payload filters
-  repeated google.protobuf.StringValue notification_payload_filters = 12 [ (com.coralogix.openapi.v1.field) = {
+  repeated google.protobuf.StringValue notification_payload_filters = 12 [(com.coralogix.openapi.v1.field) = {
       description: "JSON keys to include in the alert notification, if left empty get the full log text in the alert notification",
       max_items: 100,
       min_items: 0
