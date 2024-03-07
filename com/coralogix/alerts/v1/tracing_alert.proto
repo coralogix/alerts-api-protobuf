@@ -50,5 +50,5 @@ message Filters {
     description : "The filter operator"
     min_length: 0
     max_length: 10
-  }]
+  }];
 }
