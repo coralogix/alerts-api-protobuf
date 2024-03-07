@@ -5,9 +5,19 @@ package com.coralogix.alerts.v2;
 import "google/protobuf/wrappers.proto";
 
 import "com/coralogix/alerts/v2/alert_notification_group.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
 message AlertIncidentSettings {
-  google.protobuf.UInt32Value retriggering_period_seconds = 1;
-  NotifyOn notify_on = 2;
-  google.protobuf.BoolValue use_as_notification_settings = 3;
+  google.protobuf.UInt32Value retriggering_period_seconds = 1 [ (com.coralogix.openapi.v1.field) = {
+     description : "Retriggering period of the alert in seconds"
+     required: false
+   }];
+  NotifyOn notify_on = 2 [ (com.coralogix.openapi.v1.field) = {
+    description : "Notify on setting"
+    required: false
+  }];
+  google.protobuf.BoolValue use_as_notification_settings = 3 [ (com.coralogix.openapi.v1.field) = {
+    description : "Use these settings for all notificaion webhook"
+    required: false
+  }];
 }

@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package com.coralogix.alerts.v2;
 
+import "com/coralogix/openapi/v1/annotations.proto";
 import "google/protobuf/wrappers.proto";
 
 message ShowInInsight {
@@ -10,21 +11,57 @@ message ShowInInsight {
 }
 
 message AlertNotificationGroups {
-  repeated google.protobuf.StringValue group_by_fields = 1;
-  repeated AlertNotification notifications = 2;
+  option (com.coralogix.openapi.v1.message) = {
+    description : "Alert Notification Group"
+    resource : true
+  };
+
+  repeated google.protobuf.StringValue group_by_fields = 1  [ (com.coralogix.openapi.v1.field) = {
+    description : "Group by fields to group the values by"
+    min_items: 0,
+    max_items: 20
+    required: false
+  }];
+
+  repeated AlertNotification notifications = 2 [ (com.coralogix.openapi.v1.field) = {
+    description : "Webhook target settings for the the notification"
+    min_items: 0,
+    max_items: 20
+    required: false
+  }];
 }
 
 message AlertNotification {
-   optional google.protobuf.UInt32Value retriggering_period_seconds = 1;
-   optional NotifyOn notify_on = 2;
+   optional google.protobuf.UInt32Value retriggering_period_seconds = 1 [ (com.coralogix.openapi.v1.field) = {
+     description : "Retriggering period of the alert in seconds"
+     required: false
+   }];
+   optional NotifyOn notify_on = 2 [ (com.coralogix.openapi.v1.field) = {
+     description : "Notify on setting"
+     required: false
+   }];
    oneof integration_type {
-     google.protobuf.UInt32Value integration_id = 3;
-     Recipients recipients = 5;
+     google.protobuf.UInt32Value integration_id = 3 [ (com.coralogix.openapi.v1.field) = {
+       description : "Integration id"
+       required: false
+     }];
+     Recipients recipients = 5 [ (com.coralogix.openapi.v1.field) = {
+       required: false
+     }];
    }
 }
 
 message Recipients {
-  repeated google.protobuf.StringValue emails = 1;
+
+  option (com.coralogix.openapi.v1.message) = {
+    description : "Alert Notification Group"
+    resource : true
+  };
+
+  repeated google.protobuf.StringValue emails = 1 [ (com.coralogix.openapi.v1.field) = {
+    description: "email address"
+    required: false
+  }];
 }
 
 enum NotifyOn {

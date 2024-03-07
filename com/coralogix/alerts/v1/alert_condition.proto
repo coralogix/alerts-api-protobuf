@@ -119,14 +119,20 @@ enum EvaluationWindow {
 
 message MetricAlertConditionParameters {
 
-  google.protobuf.StringValue metric_field = 1;
+  google.protobuf.StringValue metric_field = 1 [ (com.coralogix.openapi.v1.field) = {
+    description: "The metric field of the lucene metric alert"
+    required: true
+  } ];
 
   enum MetricSource {
     METRIC_SOURCE_LOGS2METRICS_OR_UNSPECIFIED = 0;
     METRIC_SOURCE_PROMETHEUS = 1;
   }
 
-  MetricSource metric_source = 2;
+  MetricSource metric_source = 2 [ (com.coralogix.openapi.v1.field) = {
+    description: "The metric source of the lucene metric alert"
+    required: true
+  } ];
 
   enum ArithmeticOperator {
     ARITHMETIC_OPERATOR_AVG_OR_UNSPECIFIED = 0;
@@ -137,34 +143,75 @@ message MetricAlertConditionParameters {
     ARITHMETIC_OPERATOR_PERCENTILE = 5;
   }
 
-  ArithmeticOperator arithmetic_operator = 3;
+  ArithmeticOperator arithmetic_operator = 3 [ (com.coralogix.openapi.v1.field) = {
+    description: "The arithmetic operator of the lucene metric alert"
+    required: true
+  } ];
 
-  google.protobuf.UInt32Value arithmetic_operator_modifier = 4;
+  google.protobuf.UInt32Value arithmetic_operator_modifier = 4 [ (com.coralogix.openapi.v1.field) = {
+    description: "The arithmetic operator modifier of the metric promql alert"
+    required: false
+  } ];
 
-  google.protobuf.UInt32Value sample_threshold_percentage = 5;
+  google.protobuf.UInt32Value sample_threshold_percentage = 5 [ (com.coralogix.openapi.v1.field) = {
+    description: "The threshold percentage"
+    required: true
+    pattern: "[0-100]"
+  } ];
 
-  google.protobuf.UInt32Value non_null_percentage = 6;
+  google.protobuf.UInt32Value non_null_percentage = 6 [ (com.coralogix.openapi.v1.field) = {
+    description: "Non null percentage of the evaluation"
+    required: true
+    pattern: "[0-100]"
+  } ];
 
-  google.protobuf.BoolValue swap_null_values = 7;
+  google.protobuf.BoolValue swap_null_values = 7 [ (com.coralogix.openapi.v1.field) = {
+    description: "Should we swap null values with zero"
+    required: false
+  } ];
 }
 
 message MetricAlertPromqlConditionParameters {
+
+  option (com.coralogix.openapi.v1.message) = {
+    description : "Metric Alert Promql Condition alert conditions"
+    name: "Metric Alert Promql Condition alert conditions"
+  };
 
   google.protobuf.StringValue promql_text = 1 [ (com.coralogix.openapi.v1.field) = {
     description: "The promql text of the metric alert by fields for the alert condition"
     required: true
   } ];
 
-  google.protobuf.UInt32Value arithmetic_operator_modifier = 2;
+  google.protobuf.UInt32Value arithmetic_operator_modifier = 2 [ (com.coralogix.openapi.v1.field) = {
+    description: "The arithmetic operator modifier of the metric promql alert"
+    required: false
+  } ];
 
-  google.protobuf.UInt32Value sample_threshold_percentage = 3;
+  google.protobuf.UInt32Value sample_threshold_percentage = 3  [ (com.coralogix.openapi.v1.field) = {
+    description: "The threshold percentage"
+    required: true
+    pattern: "[0-100]"
+  } ];
 
-  google.protobuf.UInt32Value non_null_percentage = 4;
+  google.protobuf.UInt32Value non_null_percentage = 4 [ (com.coralogix.openapi.v1.field) = {
+    description: "Non null percentage of the evaluation"
+    required: true
+    pattern: "[0-100]"
+  } ];
 
-  google.protobuf.BoolValue swap_null_values = 5;
+  google.protobuf.BoolValue swap_null_values = 5 [ (com.coralogix.openapi.v1.field) = {
+    description: "Should we swap null values with zero"
+    required: false
+  } ];
 }
 
 message RelatedExtendedData {
+  option (com.coralogix.openapi.v1.message) = {
+    description : "Related Data for deadman"
+    name: "Related Extended Data"
+  };
+
   optional CleanupDeadmanDuration cleanup_deadman_duration = 1;
   optional google.protobuf.BoolValue should_trigger_deadman = 2;
 }

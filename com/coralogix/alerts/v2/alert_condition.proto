@@ -15,7 +15,7 @@ message AlertCondition {
 
   oneof condition {
     ImmediateCondition immediate = 1 [ (com.coralogix.openapi.v1.field) = {
-      description : " Condition for immediate standard alert"
+      description : "Condition for immediate standard alert"
     } ];
     LessThanCondition less_than = 2 [ (com.coralogix.openapi.v1.field) = {
       description : "Condition for less than alert"
@@ -46,7 +46,6 @@ message ImmediateCondition {
     description : "Immediate alert has no condition"
     name: "Immediate alert condition"
   };
-
 }
 
 message LessThanCondition {
@@ -153,16 +152,23 @@ message ConditionParameters {
     required:false
   } ];
   google.protobuf.BoolValue ignore_infinity = 6 [ (com.coralogix.openapi.v1.field) = {
-    description: "should the evaluation ignore infinity value"
+    description: "Should the evaluation ignore infinity value"
     required: true
   } ];
   v1.RelativeTimeframe relative_timeframe = 7 [ (com.coralogix.openapi.v1.field) = {
-    description: "the relative timeframe for time relative alerts"
+    description: "The relative timeframe for time relative alerts"
     required: false
   } ];
   google.protobuf.BoolValue notify_group_by_only_alerts = 8 [deprecated = true];
 
-  repeated google.protobuf.StringValue cardinality_fields = 10;
+  repeated google.protobuf.StringValue cardinality_fields = 10 [ (com.coralogix.openapi.v1.field) = {
+    description: "Cardinality fields for unique count alert"
+    required: false
+  } ];
+
   google.protobuf.UInt32Value max_unique_count_values_for_group_by_key = 11 [deprecated = true];
-  optional v1.RelatedExtendedData related_extended_data = 12;
+  optional v1.RelatedExtendedData related_extended_data = 12 [ (com.coralogix.openapi.v1.field) = {
+    description: "Deadman configuration"
+    required: false
+  } ];
 }
