@@ -195,83 +195,65 @@ message CreateAlertRequest {
     name: "AlertPrototype"
     description: "Alert to create"
   };
-
+  // Alert name
   google.protobuf.StringValue name = 2 [ (com.coralogix.openapi.v1.field) = {
     required : true
     example : "\"Unique count alert\"",
   } ];
+  // Alert description
   google.protobuf.StringValue description = 3 [ (com.coralogix.openapi.v1.field) = {
     required : true
     example : "\"Example of unique count alert from terraform\"",
   } ];
-
+  // Alert is active
   google.protobuf.BoolValue is_active = 4 [ (com.coralogix.openapi.v1.field) = {
     required : true,
     example : "true"
   } ];
-
+  // Alert severity
   v1.AlertSeverity severity = 5  [ (com.coralogix.openapi.v1.field) = {
     required : true,
     example : "\"info_or_unspecified\""
   } ];
-
-  v1.Date expiration = 6 [ (com.coralogix.openapi.v1.field) = {
-    description : "Alert expiration date",
-  } ];
-
+  // Alert expiration date
+  v1.Date expiration = 6;
+  // Alert condition
   AlertCondition condition = 7 [ (com.coralogix.openapi.v1.field) = {
-    description: "Alert Condition"
     required : true,
   } ];
-
+  // Alert show in insight
   optional ShowInInsight show_in_insight = 8 [ deprecated = true];
-
+  // Alert notification groups
   repeated AlertNotificationGroups notification_groups = 9 [ (com.coralogix.openapi.v1.field) = {
     description : "Alert notification groups"
     min_items:1,
     max_items:10
-    required: false
+    required: true 
   }];
-
-  optional AlertIncidentSettings incident_settings = 16 [ (com.coralogix.openapi.v1.field) = {
-    description : "Incident settings, will create the incident based on this configuration"
-    required: false
-  }];
-
+  // Incident settings, will create the incident based on this configuration
+  optional AlertIncidentSettings incident_settings = 16;
+  // Alert filters
   v1.AlertFilters filters = 10 [ (com.coralogix.openapi.v1.field) = {
-    description : "Alert Filters",
     required : true
   }];
-
-  v1.AlertActiveWhen active_when = 11 [ (com.coralogix.openapi.v1.field) = {
-    description : "When should the alert be active"
-    required: false
-  }];
-
+  // When should the alert be active
+  v1.AlertActiveWhen active_when = 11;
+  // JSON keys to include in the alert notification, if left empty get the full log text in the alert notification
   repeated google.protobuf.StringValue notification_payload_filters = 12 [ (com.coralogix.openapi.v1.field) = {
-    description: "JSON keys to include in the alert notification, if left empty get the full log text in the alert notification",
     max_items: 100,
     min_items: 0
-    required : false,
   }];
-
+  // The Meta labels to add to the alert
   repeated v1.MetaLabel meta_labels = 13 [ (com.coralogix.openapi.v1.field) = {
     max_items: 200,
-    description: "The Meta labels to add to the alert"
-    required : false,
   }];
-
+  // The Meta labels to add to the alert as string with ':' separator
   repeated google.protobuf.StringValue meta_labels_strings = 14 [ (com.coralogix.openapi.v1.field) = {
     max_length: 2000,
-    description: "The Meta labels to add to the alert as string with ':' separator"
     example : "[\"env:dev\"]",
-    required : false,
   } ];
-
-  optional v1.TracingAlert tracing_alert = 15 [ (com.coralogix.openapi.v1.field) = {
-    description: "The definition for tracing alert"
-    required : false,
-  } ];
+  // The definition for tracing alert
+  optional v1.TracingAlert tracing_alert = 15;
 }
 
 message CreateAlertResponse {

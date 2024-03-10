@@ -6,65 +6,49 @@ import "com/coralogix/openapi/v1/annotations.proto";
 import "google/protobuf/wrappers.proto";
 
 message ShowInInsight {
+  option (com.coralogix.openapi.v1.message).description = "Show in insight";
+  // Retriggering period of the alert in seconds
   optional google.protobuf.UInt32Value retriggering_period_seconds = 1;
+  // Notify on setting
   optional NotifyOn notify_on = 2;
 }
 
 message AlertNotificationGroups {
-  option (com.coralogix.openapi.v1.message) = {
-    description : "Alert Notification Group"
-    resource : true
-  };
-
+  option (com.coralogix.openapi.v1.message).description = "Alert Notification Group";
+  // Group by fields to group the values by
   repeated google.protobuf.StringValue group_by_fields = 1  [ (com.coralogix.openapi.v1.field) = {
-    description : "Group by fields to group the values by"
     min_items: 0,
     max_items: 20
-    required: false
   }];
-
+  // Webhook target settings for the the notification
   repeated AlertNotification notifications = 2 [ (com.coralogix.openapi.v1.field) = {
-    description : "Webhook target settings for the the notification"
     min_items: 0,
     max_items: 20
-    required: false
   }];
 }
 
 message AlertNotification {
-   optional google.protobuf.UInt32Value retriggering_period_seconds = 1 [ (com.coralogix.openapi.v1.field) = {
-     description : "Retriggering period of the alert in seconds"
-     required: false
-   }];
-   optional NotifyOn notify_on = 2 [ (com.coralogix.openapi.v1.field) = {
-     description : "Notify on setting"
-     required: false
-   }];
+  option (com.coralogix.openapi.v1.message).description = "Alert Notification";
+  // Retriggering period of the alert in seconds
+   optional google.protobuf.UInt32Value retriggering_period_seconds = 1;
+   // Notify on setting
+   optional NotifyOn notify_on = 2;
    oneof integration_type {
-     google.protobuf.UInt32Value integration_id = 3 [ (com.coralogix.openapi.v1.field) = {
-       description : "Integration id"
-       required: false
-     }];
-     Recipients recipients = 5 [ (com.coralogix.openapi.v1.field) = {
-       required: false
-     }];
+    // Integration id
+     google.protobuf.UInt32Value integration_id = 3;
+     // Recipients
+     Recipients recipients = 5;
    }
 }
 
 message Recipients {
-
-  option (com.coralogix.openapi.v1.message) = {
-    description : "Alert Notification Group"
-    resource : true
-  };
-
-  repeated google.protobuf.StringValue emails = 1 [ (com.coralogix.openapi.v1.field) = {
-    description: "email address"
-    required: false
-  }];
+  option (com.coralogix.openapi.v1.message).description = "Alert Notification Group";
+  // Email addresses
+  repeated google.protobuf.StringValue emails = 1;
 }
 
 enum NotifyOn {
+  option (com.coralogix.openapi.v1.enum).description = "Notify on enum";
   TRIGGERED_ONLY = 0;
   TRIGGERED_AND_RESOLVED = 1;
 }
