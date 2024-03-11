@@ -4,30 +4,45 @@ package com.coralogix.alerts.v1;
 
 import "google/protobuf/wrappers.proto";
 
+// Flow stage represents a stage of flow of alerts
 message FlowStage {
+  // list of groups of alerts
   repeated FlowGroup groups = 1;
+  // timeframe for the flow
   FlowTimeframe timeframe = 2;
 }
 
+// Flow represents a flow of alerts
 message FlowAlert {
+  // alert id
   google.protobuf.StringValue id = 1;
+  // alert not
   google.protobuf.BoolValue not = 2;
 }
 
+// FlowAlerts represents a list of alerts with operator
 message FlowAlerts {
+  // operator for the alerts
   FlowOperator op = 1;
+  // list of alerts
   repeated FlowAlert values = 2;
 }
 
+// FlowGroup represents a group of alerts
 message FlowGroup {
+  // list of alerts
   FlowAlerts alerts = 1;
+  // next operator
   FlowOperator nextOp = 2;
 }
 
+// FlowTimeframe represents a timeframe for the flow
 message FlowTimeframe {
+  // timeframe in milliseconds
   google.protobuf.UInt32Value ms = 1;
 }
 
+// FlowOperator represents an operator for the flow
 enum FlowOperator {
   AND = 0;
   OR = 1;
