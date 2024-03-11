@@ -5,16 +5,15 @@ package com.coralogix.alerts.v2;
 import "com/coralogix/openapi/v1/annotations.proto";
 import "google/protobuf/wrappers.proto";
 
+// Show in insight
 message ShowInInsight {
-  option (com.coralogix.openapi.v1.message).description = "Show in insight";
   // Retriggering period of the alert in seconds
   optional google.protobuf.UInt32Value retriggering_period_seconds = 1;
   // Notify on setting
   optional NotifyOn notify_on = 2;
 }
-
+// Alert notification groups
 message AlertNotificationGroups {
-  option (com.coralogix.openapi.v1.message).description = "Alert Notification Group";
   // Group by fields to group the values by
   repeated google.protobuf.StringValue group_by_fields = 1  [ (com.coralogix.openapi.v1.field) = {
     min_items: 0,
@@ -26,9 +25,8 @@ message AlertNotificationGroups {
     max_items: 20
   }];
 }
-
+// Alert notification
 message AlertNotification {
-  option (com.coralogix.openapi.v1.message).description = "Alert Notification";
   // Retriggering period of the alert in seconds
    optional google.protobuf.UInt32Value retriggering_period_seconds = 1;
    // Notify on setting
@@ -40,15 +38,13 @@ message AlertNotification {
      Recipients recipients = 5;
    }
 }
-
+// Recipients
 message Recipients {
-  option (com.coralogix.openapi.v1.message).description = "Alert Notification Group";
   // Email addresses
   repeated google.protobuf.StringValue emails = 1;
 }
-
+// Notify on enum
 enum NotifyOn {
-  option (com.coralogix.openapi.v1.enum).description = "Notify on enum";
   TRIGGERED_ONLY = 0;
   TRIGGERED_AND_RESOLVED = 1;
 }

@@ -175,7 +175,8 @@ service AlertService {
 }
 
 message GetAlertRequest {
-  google.protobuf.StringValue id = 1 [(com.coralogix.openapi.v1.field) = { required: true, description: "Alert id", format: "uuid", min_length: 36, max_length: 36, example: "\"3dc02998-0b50-4ea8-b68a-4779d716fa1f\""  } ];
+  // Alert id
+  google.protobuf.StringValue id = 1 [(com.coralogix.openapi.v1.field) = { required: true, format: "uuid", min_length: 36, max_length: 36, example: "\"3dc02998-0b50-4ea8-b68a-4779d716fa1f\""  } ];
 }
 
 message GetAlertResponse {
@@ -189,11 +190,10 @@ message GetAlertByUniqueIdRequest {
 message GetAlertByUniqueIdResponse {
   Alert alert = 1;
 }
-
+// Alert to create/update
 message CreateAlertRequest {
   option (com.coralogix.openapi.v1.message) = {
     name: "AlertPrototype"
-    description: "Alert to create"
   };
   // Alert name
   google.protobuf.StringValue name = 2 [ (com.coralogix.openapi.v1.field) = {
@@ -281,63 +281,44 @@ message GetAlertModelMappingRequest {
     required : true,
     example : "\"info_or_unspecified\""
   } ];
-
+  // Alert expiration date
   v1.Date expiration = 6 [ (com.coralogix.openapi.v1.field) = {
-    description : "Alert expiration date",
   } ];
-
+  // Alert condition
   AlertCondition condition = 7 [ (com.coralogix.openapi.v1.field) = {
-    description: "Alert Condition"
     required : true,
   } ];
 
   optional ShowInInsight show_in_insight = 8 [ deprecated = true];
-
+  // Alert notification groups
   repeated AlertNotificationGroups notification_groups = 9 [ (com.coralogix.openapi.v1.field) = {
-    description : "Alert notification groups"
     min_items:1,
     max_items:10
-    required: false
   }];
-
-  optional AlertIncidentSettings incident_settings = 16 [ (com.coralogix.openapi.v1.field) = {
-    description : "Incident settings, will create the incident based on this configuration"
-    required: false
-  }];
-
+  // Incident settings, will create the incident based on this configuration
+  optional AlertIncidentSettings incident_settings = 16;
+  // Alert filters
   v1.AlertFilters filters = 10 [ (com.coralogix.openapi.v1.field) = {
-    description : "Alert Filters",
     required : true
   }];
-
-  v1.AlertActiveWhen active_when = 11 [ (com.coralogix.openapi.v1.field) = {
-    description : "When should the alert be active"
-    required: false
-  }];
-
+  // When should the alert be active
+  v1.AlertActiveWhen active_when = 11;
+  // JSON keys to include in the alert notification, if left empty get the full log text in the alert notification
   repeated google.protobuf.StringValue notification_payload_filters = 12 [ (com.coralogix.openapi.v1.field) = {
-    description: "JSON keys to include in the alert notification, if left empty get the full log text in the alert notification",
     max_items: 100,
     min_items: 0
-    required : false,
   }];
-
+  // The Meta labels to add to the alert
   repeated v1.MetaLabel meta_labels = 13 [ (com.coralogix.openapi.v1.field) = {
     max_items: 200,
-    description: "The Meta labels to add to the alert"
-    required : false,
   }];
+  // The Meta labels to add to the alert as string with ':' separator
   repeated google.protobuf.StringValue meta_labels_strings = 14 [ (com.coralogix.openapi.v1.field) = {
     max_length: 2000,
-    description: "The Meta labels to add to the alert as string with ':' separator"
     example : "[\"env:dev\"]",
-    required : false,
   } ];
-
-  optional v1.TracingAlert tracing_alert = 15 [ (com.coralogix.openapi.v1.field) = {
-    description: "The definition for tracing alert"
-    required : false,
-  } ];
+  // The definition for tracing alert
+  optional v1.TracingAlert tracing_alert = 15;
 }
 
 message GetAlertModelMappingResponse {
@@ -378,10 +359,10 @@ message UpdateAlertByUniqueIdResponse {
 message GetAlertsRequest {
 }
 
+// Alerts collection
 message GetAlertsResponse {
   option (com.coralogix.openapi.v1.message) = {
     name: "AlertCollection"
-    description: "Alerts collection"
   };
   // Alerts
   repeated Alert alerts = 1;
@@ -396,6 +377,7 @@ message ValidateAlertResponse {
 }
 
 message DeleteAlertRequest {
+  // Alert id
   google.protobuf.StringValue id = 1 [ (com.coralogix.openapi.v1.field) = {
     required : true,
     format : "uuid",
@@ -442,12 +424,8 @@ message GetAlertEventsCountBySeverityRequest {
   google.protobuf.Timestamp to = 2 [ (com.coralogix.openapi.v1.field) = {
     required : true,
   }];
-  repeated google.protobuf.StringValue applications = 3 [ (com.coralogix.openapi.v1.field) = {
-    required : false,
-  }];
-  repeated google.protobuf.StringValue subsystems = 4 [ (com.coralogix.openapi.v1.field) = {
-    required : false,
-  }];
+  repeated google.protobuf.StringValue applications = 3;
+  repeated google.protobuf.StringValue subsystems = 4;
 }
 
 message GetAlertEventsCountBySeverityResponse {

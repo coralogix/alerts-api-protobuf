@@ -112,28 +112,28 @@ enum CleanupDeadmanDuration {
   CLEANUP_DEADMAN_DURATION_12H   = 6;
   CLEANUP_DEADMAN_DURATION_24H   = 7;
 }
+// Evaluation window
 enum EvaluationWindow {
   EVALUATION_WINDOW_ROLLING_OR_UNSPECIFIED = 0;
   EVALUATION_WINDOW_DYNAMIC = 1;
 }
 
+// Metric Alert Condition alert conditions
 message MetricAlertConditionParameters {
-
+  // The metric field of the metric alert
   google.protobuf.StringValue metric_field = 1 [ (com.coralogix.openapi.v1.field) = {
-    description: "The metric field of the lucene metric alert"
     required: true
   } ];
-
+  // The metric source of the metric alert
   enum MetricSource {
     METRIC_SOURCE_LOGS2METRICS_OR_UNSPECIFIED = 0;
     METRIC_SOURCE_PROMETHEUS = 1;
   }
-
+  // The metric source of the metric alert
   MetricSource metric_source = 2 [ (com.coralogix.openapi.v1.field) = {
-    description: "The metric source of the lucene metric alert"
     required: true
   } ];
-
+  // The arithmetic operator of the metric alert
   enum ArithmeticOperator {
     ARITHMETIC_OPERATOR_AVG_OR_UNSPECIFIED = 0;
     ARITHMETIC_OPERATOR_MIN = 1;
@@ -142,75 +142,49 @@ message MetricAlertConditionParameters {
     ARITHMETIC_OPERATOR_COUNT = 4;
     ARITHMETIC_OPERATOR_PERCENTILE = 5;
   }
-
+  // The arithmetic operator of the metric promql alert
   ArithmeticOperator arithmetic_operator = 3 [ (com.coralogix.openapi.v1.field) = {
-    description: "The arithmetic operator of the lucene metric alert"
     required: true
   } ];
-
-  google.protobuf.UInt32Value arithmetic_operator_modifier = 4 [ (com.coralogix.openapi.v1.field) = {
-    description: "The arithmetic operator modifier of the metric promql alert"
-    required: false
-  } ];
-
+  // The arithmetic operator modifier of the metric promql alert
+  google.protobuf.UInt32Value arithmetic_operator_modifier = 4;
+  // The threshold percentage
   google.protobuf.UInt32Value sample_threshold_percentage = 5 [ (com.coralogix.openapi.v1.field) = {
-    description: "The threshold percentage"
     required: true
     pattern: "[0-100]"
   } ];
-
+  // Non null percentage of the evaluation
   google.protobuf.UInt32Value non_null_percentage = 6 [ (com.coralogix.openapi.v1.field) = {
-    description: "Non null percentage of the evaluation"
     required: true
     pattern: "[0-100]"
   } ];
-
-  google.protobuf.BoolValue swap_null_values = 7 [ (com.coralogix.openapi.v1.field) = {
-    description: "Should we swap null values with zero"
-    required: false
-  } ];
+  // Should we swap null values with zero
+  google.protobuf.BoolValue swap_null_values = 7;
 }
 
+// Metric Alert Promql Condition alert conditions
 message MetricAlertPromqlConditionParameters {
-
-  option (com.coralogix.openapi.v1.message) = {
-    description : "Metric Alert Promql Condition alert conditions"
-    name: "Metric Alert Promql Condition alert conditions"
-  };
-
+  // The promql text of the metric alert by fields for the alert condition
   google.protobuf.StringValue promql_text = 1 [ (com.coralogix.openapi.v1.field) = {
-    description: "The promql text of the metric alert by fields for the alert condition"
     required: true
   } ];
-
-  google.protobuf.UInt32Value arithmetic_operator_modifier = 2 [ (com.coralogix.openapi.v1.field) = {
-    description: "The arithmetic operator modifier of the metric promql alert"
-    required: false
-  } ];
-
+  // The arithmetic operator of the metric promql alert
+  google.protobuf.UInt32Value arithmetic_operator_modifier = 2;
+  // The threshold percentage
   google.protobuf.UInt32Value sample_threshold_percentage = 3  [ (com.coralogix.openapi.v1.field) = {
-    description: "The threshold percentage"
     required: true
     pattern: "[0-100]"
   } ];
-
+  // Non null percentage of the evaluation
   google.protobuf.UInt32Value non_null_percentage = 4 [ (com.coralogix.openapi.v1.field) = {
-    description: "Non null percentage of the evaluation"
     required: true
     pattern: "[0-100]"
   } ];
-
-  google.protobuf.BoolValue swap_null_values = 5 [ (com.coralogix.openapi.v1.field) = {
-    description: "Should we swap null values with zero"
-    required: false
-  } ];
+  // Should we swap null values with zero
+  google.protobuf.BoolValue swap_null_values = 5;
 }
-
+// Related Extended Data for deadman
 message RelatedExtendedData {
-  option (com.coralogix.openapi.v1.message) = {
-    description : "Related Data for deadman"
-    name: "Related Extended Data"
-  };
   // Cleanup deadman duration
   optional CleanupDeadmanDuration cleanup_deadman_duration = 1;
   // Should we trigger deadman

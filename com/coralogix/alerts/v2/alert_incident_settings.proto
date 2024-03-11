@@ -5,10 +5,9 @@ package com.coralogix.alerts.v2;
 import "google/protobuf/wrappers.proto";
 
 import "com/coralogix/alerts/v2/alert_notification_group.proto";
-import "com/coralogix/openapi/v1/annotations.proto";
 
+// The alert incident settings
 message AlertIncidentSettings {
-  option (com.coralogix.openapi.v1.message).description = "The alert incident settings";
   // The retriggering period of the alert in seconds
   google.protobuf.UInt32Value retriggering_period_seconds = 1;
   // Notify on setting

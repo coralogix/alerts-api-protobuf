@@ -16,12 +16,11 @@ import "com/coralogix/alerts/v1/tracing_alert.proto";
 import "com/coralogix/alerts/v2/alert_incident_settings.proto";
 import "com/coralogix/openapi/v1/annotations.proto";
 
+// Alert resource model
 message Alert {
   option (com.coralogix.openapi.v1.message) = {
-    description : "Alerts resource model"
     resource : true
   };
-
   // Alert id
   google.protobuf.StringValue id = 1 [ (com.coralogix.openapi.v1.field) = {
     required : true,

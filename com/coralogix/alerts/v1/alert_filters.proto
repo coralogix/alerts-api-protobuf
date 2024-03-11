@@ -19,9 +19,8 @@ message AlertFilters {
 
   // The severity of the logs to filter
   repeated LogSeverity severities = 1;
-
+  // The metadata filters
   message MetadataFilters {
-    option (com.coralogix.openapi.v1.message).description = "Metadata filters";
     // The categories to filter
     repeated google.protobuf.StringValue categories = 1;
     // The applications to filter
@@ -45,9 +44,8 @@ message AlertFilters {
   google.protobuf.StringValue alias = 3;
   // The text to filter
   google.protobuf.StringValue text = 4;
-
+  // Ratio alert
   message RatioAlert {
-    option (com.coralogix.openapi.v1.message).description = "Ratio alert";
     // The alias of the filter
     google.protobuf.StringValue alias = 1;
     // The text to filter

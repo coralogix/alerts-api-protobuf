@@ -1,13 +1,9 @@
 syntax = "proto3";
 
 package com.coralogix.alerts.v1;
-import "com/coralogix/openapi/v1/annotations.proto";
 
 enum AlertSeverity {
-  option (com.coralogix.openapi.v1.enum) = {
-    description : "The severity describing this alert"
-    name: "Alert severity"
-  };
+  //  The severity describing this alert
   ALERT_SEVERITY_INFO_OR_UNSPECIFIED = 0;
   ALERT_SEVERITY_WARNING = 1;
   ALERT_SEVERITY_CRITICAL = 2;
