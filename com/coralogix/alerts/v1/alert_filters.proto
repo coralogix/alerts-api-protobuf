@@ -3,9 +3,12 @@ syntax = "proto3";
 package com.coralogix.alerts.v1;
 
 import "google/protobuf/wrappers.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
 message AlertFilters {
   enum LogSeverity {
+    option (com.coralogix.openapi.v1.enum).description = "Log severity";
+    
     LOG_SEVERITY_DEBUG_OR_UNSPECIFIED = 0;
     LOG_SEVERITY_VERBOSE = 1;
     LOG_SEVERITY_INFO = 2;
@@ -14,35 +17,56 @@ message AlertFilters {
     LOG_SEVERITY_CRITICAL = 5;
   }
 
+  // The severity of the logs to filter
   repeated LogSeverity severities = 1;
 
   message MetadataFilters {
+    option (com.coralogix.openapi.v1.message).description = "Metadata filters";
+    // The categories to filter
     repeated google.protobuf.StringValue categories = 1;
+    // The applications to filter
     repeated google.protobuf.StringValue applications = 2;
+    // The subsystems to filter
     repeated google.protobuf.StringValue subsystems = 3;
+    // The computers to filter
     repeated google.protobuf.StringValue computers = 4;
+    // The classes to filter
     repeated google.protobuf.StringValue classes = 5;
+    // The methods to filter
     repeated google.protobuf.StringValue methods = 6;
+    // The IP addresses to filter
     repeated google.protobuf.StringValue ip_addresses = 7;
   }
 
+  // The metadata filters
   MetadataFilters metadata = 2;
 
+  // The alias of the filter
   google.protobuf.StringValue alias = 3;
+  // The text to filter
   google.protobuf.StringValue text = 4;
 
   message RatioAlert {
+    option (com.coralogix.openapi.v1.message).description = "Ratio alert";
+    // The alias of the filter
     google.protobuf.StringValue alias = 1;
+    // The text to filter
     google.protobuf.StringValue text = 2;
+    // The severities to filter
     repeated LogSeverity severities = 3;
+    // The applications to filter
     repeated google.protobuf.StringValue applications = 4;
+    // The subsystems to filter
     repeated google.protobuf.StringValue subsystems = 5;
+    // The group by fields
     repeated google.protobuf.StringValue group_by = 6;
   }
 
+  // The ratio alerts
   repeated RatioAlert ratio_alerts = 5;
 
   enum FilterType {
+    option (com.coralogix.openapi.v1.enum).description = "Filter type";
     FILTER_TYPE_TEXT_OR_UNSPECIFIED = 0;
     FILTER_TYPE_TEMPLATE = 1;
     FILTER_TYPE_RATIO = 2;
@@ -53,5 +77,6 @@ message AlertFilters {
     FILTER_TYPE_FLOW = 7;
   }
 
+  // The type of the filter
   FilterType filter_type = 6;
 }

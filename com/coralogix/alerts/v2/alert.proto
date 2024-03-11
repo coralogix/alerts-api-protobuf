@@ -65,7 +65,6 @@ message Alert {
     max_items: 10
     required: true
   }];
-
   // Incident settings, will create the incident based on this configuration
   optional AlertIncidentSettings incident_settings = 17;
   // Alert filters
@@ -90,7 +89,6 @@ message Alert {
   } ];
   // The definition for tracing alert
   v1.TracingAlert tracing_alert = 15;
-
   // Alert unique identifier
   google.protobuf.StringValue unique_identifier = 16 [ (com.coralogix.openapi.v1.field) = {
     format : "uuid",

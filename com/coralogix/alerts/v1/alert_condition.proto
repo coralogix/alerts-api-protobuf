@@ -211,7 +211,8 @@ message RelatedExtendedData {
     description : "Related Data for deadman"
     name: "Related Extended Data"
   };
-
+  // Cleanup deadman duration
   optional CleanupDeadmanDuration cleanup_deadman_duration = 1;
+  // Should we trigger deadman
   optional google.protobuf.BoolValue should_trigger_deadman = 2;
 }

@@ -383,6 +383,7 @@ message GetAlertsResponse {
     name: "AlertCollection"
     description: "Alerts collection"
   };
+  // Alerts
   repeated Alert alerts = 1;
 }
 
