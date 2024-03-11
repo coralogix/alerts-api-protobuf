@@ -5,38 +5,31 @@ package com.coralogix.alerts.v1;
 import "com/coralogix/alerts/v1/date_time.proto";
 import "com/coralogix/openapi/v1/annotations.proto";
 
+// Alert Active When model
 message AlertActiveWhen {
-  option (com.coralogix.openapi.v1.message) = {
-    description : "Alert Active When model"
-    resource : false
-  };
+  // Activity timeframes of the alert
   repeated AlertActiveTimeframe timeframes = 1 [ (com.coralogix.openapi.v1.field) = {
-    description : "Activity timeframe of the alert"
     required: true
     min_items: 1
     max_items: 30
   }];
 }
 
+// Alert Active When Timeframe model
 message AlertActiveTimeframe {
-  option (com.coralogix.openapi.v1.message) = {
-    description : "Alert Active When timeframe model"
-    resource : false
-  };
-
+  // Days of the week for activity
   repeated DayOfWeek days_of_week = 1 [ (com.coralogix.openapi.v1.field) = {
-    description : "Day of the week for activity"
     required: true
     min_items: 1
     max_items: 30
   }];
-
+  // Time range in the day of the week
   TimeRange range = 2 [ (com.coralogix.openapi.v1.field) = {
-    description : "Time range in the day of the week"
     required: true
   }];
 }
 
+// Day of the week
 enum DayOfWeek {
   DAY_OF_WEEK_MONDAY_OR_UNSPECIFIED = 0;
   DAY_OF_WEEK_TUESDAY = 1;
@@ -47,7 +40,10 @@ enum DayOfWeek {
   DAY_OF_WEEK_SUNDAY = 6;
 }
 
+// Time range
 message TimeRange {
+  // Start time
   Time start = 1 [(com.coralogix.openapi.v1.field) = {required: true}];
+  // End time
   Time end = 2 [(com.coralogix.openapi.v1.field) = {required: true}];
 }

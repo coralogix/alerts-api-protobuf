@@ -7,9 +7,8 @@ import "com/coralogix/alerts/v1/flow_alert.proto";
 import "com/coralogix/alerts/v1/alert_condition.proto";
 import "com/coralogix/openapi/v1/annotations.proto";
 
+// The alert condition for the alert
 message AlertCondition {
-  option (com.coralogix.openapi.v1.message).description = "The alert conditions";;
-
   oneof condition {
     // Condition for immediate standard alert
     ImmediateCondition immediate = 1;
@@ -30,49 +29,50 @@ message AlertCondition {
   }
 }
 
+// The Immediate alert condition, does not have any condition parameters
 message ImmediateCondition {
-  option (com.coralogix.openapi.v1.message).description = "Immediate alert has no condition";
 }
 
+// The Less than alert condition
 message LessThanCondition {
-  option (com.coralogix.openapi.v1.message).description = "Less than alert condition";
+  // The Less than alert condition parameters
   ConditionParameters parameters = 1 [ (com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
 }
 
+// The More than alert condition
 message MoreThanCondition {
-  option (com.coralogix.openapi.v1.message).description = "More Than alert condition";
   // The More than alert condition parameters
   ConditionParameters parameters = 1  [ (com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
   // The evaluation window for the alert condition
   optional v1.EvaluationWindow evaluation_window = 2;
 }
 
+// The More than usual alert condition
 message MoreThanUsualCondition {
-  option (com.coralogix.openapi.v1.message).description = "More than usual alert condition";
   // The More than usual alert condition parameters
   ConditionParameters parameters = 1  [ (com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
 }
 
+// The Less than usual alert condition
 message LessThanUsualCondition {
-  option (com.coralogix.openapi.v1.message).description = "Less than usual alert condition";
   // The Less than usual alert condition parameters
   ConditionParameters parameters = 1  [ (com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
 }
 
+// The New value alert condition
 message NewValueCondition {
-  option (com.coralogix.openapi.v1.message).description = "New value alert condition";
   // The New value alert condition parameters
   ConditionParameters parameters = 1  [ (com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
 }
 
+// The Unique count alert condition
 message UniqueCountCondition {
-  option (com.coralogix.openapi.v1.message).description = "Unique count alert condition";
   // The Unique count alert condition parameters
   ConditionParameters parameters = 1  [ (com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
 }
 
+// The Flow alert condition
 message FlowCondition {
-  option (com.coralogix.openapi.v1.message).description = "Flow alert condition";
   // The Flow alert condition parameters
   repeated v1.FlowStage stages = 1 [ (com.coralogix.openapi.v1.field) = {
     min_items:0,
@@ -84,8 +84,8 @@ message FlowCondition {
   google.protobuf.BoolValue enforce_suppression = 3;
 }
 
+// The alert condition
 message ConditionParameters {
-  option (com.coralogix.openapi.v1.message).description = "The alert conditions";
   // The threshold for the alert condition
   google.protobuf.DoubleValue threshold = 1 [ (com.coralogix.openapi.v1.field) = {
     required: true

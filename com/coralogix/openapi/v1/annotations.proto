@@ -112,11 +112,17 @@ message ApiError {
             ERROR_CODE_RESOURCE_EXHAUSTED = 7;
             ERROR_CODE_DEADLINE_EXCEEDED = 8;
         }
-        ErrorCode code = 1 [(com.coralogix.openapi.v1.field) = { required: true, description: "Error code" } ];
-        google.protobuf.StringValue message = 2;    // Human-readable error message.
-        google.protobuf.StringValue more_info = 3;  // Additional information about the error.
+        // Error code
+        ErrorCode code = 1 [(com.coralogix.openapi.v1.field) = { required: true } ];
+         // Human-readable error message
+        google.protobuf.StringValue message = 2;   
+        // Additional information about the error
+        google.protobuf.StringValue more_info = 3;
     }
-    repeated Error errors = 1 [(com.coralogix.openapi.v1.field) = { required: true, description: "List of errors", min_length: 1 } ];
-    google.protobuf.StringValue trace = 2 [(com.coralogix.openapi.v1.field) = { required: true, description: "UUID uniquely identifying the request" } ];
-    google.protobuf.Int32Value status_code = 3;   // HTTP status code associated with the error.
+    // List of errors
+    repeated Error errors = 1 [(com.coralogix.openapi.v1.field) = { required: true, min_length: 1 } ];
+    // UUID uniquely identifying the request
+    google.protobuf.StringValue trace = 2 [(com.coralogix.openapi.v1.field) = { required: true } ];
+    // HTTP status code associated with the error
+    google.protobuf.Int32Value status_code = 3;   
 }
