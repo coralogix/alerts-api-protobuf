@@ -3,51 +3,49 @@ syntax = "proto3";
 import "com/coralogix/openapi/v1/annotations.proto";
 package com.coralogix.alerts.v1;
 
+// Trace alert conditions
 message TracingAlert {
-  option (com.coralogix.openapi.v1.message) = {
-    description : "Tracing alert conditions"
-    resource : false
-  };
-
-    uint32 condition_latency = 1 [(com.coralogix.openapi.v1.field) = {
-        description : "The latency condition in milliseconds"
-        required : true
-    }];
-    repeated FilterData field_filters = 2 [(com.coralogix.openapi.v1.field) = {
-        description : "The tracing field filters"
-        max_items: 100
-        min_items: 0
-    }];
-
-    repeated FilterData tag_filters = 3 [(com.coralogix.openapi.v1.field) = {
-      description : "The tracing tag filters"
+  // The latency condition in milliseconds
+  uint32 condition_latency = 1 [(com.coralogix.openapi.v1.field) = {
+      required : true
+  }];
+  // The tracing field filters
+  repeated FilterData field_filters = 2 [(com.coralogix.openapi.v1.field) = {
       max_items: 100
       min_items: 0
-    }];
-}
-
-message FilterData {
-  string field = 1 [(com.coralogix.openapi.v1.field) = {
-    description : "The field name"
-    required : true
   }];
-  repeated Filters filters = 2 [(com.coralogix.openapi.v1.field) = {
-    description : "The field filters"
+
+  // The tracing tag filters
+  repeated FilterData tag_filters = 3 [(com.coralogix.openapi.v1.field) = {
     max_items: 100
     min_items: 0
   }];
 }
 
+// Filter data
+message FilterData {
+  // The field name
+  string field = 1 [(com.coralogix.openapi.v1.field) = {
+    required : true
+  }];
+  // The field filters
+  repeated Filters filters = 2 [(com.coralogix.openapi.v1.field) = {
+    max_items: 100
+    min_items: 0
+  }];
+}
+
+// Filter values and operator
 message Filters {
+  // The filter values
   repeated string values = 1 [(com.coralogix.openapi.v1.field) = {
-    description : "The filter values"
     min_items:0
     max_items: 100
     min_length: 0
     max_length: 256
   }];
+  // The filter operator
   string operator = 2[ (com.coralogix.openapi.v1.field) = {
-    description : "The filter operator"
     min_length: 0
     max_length: 10
   }];
