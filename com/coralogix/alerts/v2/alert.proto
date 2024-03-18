@@ -37,7 +37,6 @@ message Alert {
   } ];
   // Alert description
   google.protobuf.StringValue description = 3 [ (com.coralogix.openapi.v1.field) = {
-    required : true
     example : "\"Example of unique count alert from terraform\"",
   } ];
   // Alert is active

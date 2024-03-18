@@ -109,9 +109,7 @@ message ConditionParameters {
   v1.MetricAlertPromqlConditionParameters metric_alert_promql_parameters = 5 [ (com.coralogix.openapi.v1.field) = {
   } ];
   // Should the evaluation ignore infinity value
-  google.protobuf.BoolValue ignore_infinity = 6 [ (com.coralogix.openapi.v1.field) = {
-    required: true
-  } ];
+  google.protobuf.BoolValue ignore_infinity = 6;
   // The relative timeframe for time relative alerts
   v1.RelativeTimeframe relative_timeframe = 7;
   google.protobuf.BoolValue notify_group_by_only_alerts = 8 [deprecated = true];
