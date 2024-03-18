@@ -3,13 +3,19 @@ syntax = "proto3";
 package com.coralogix.alerts.v1;
 
 message Date {
+  // Year
   int32 year = 1;
+  // Month of the year
   int32 month = 2;
+  // Day of the month
   int32 day = 3;
 }
 
 message Time {
+  // Hours of the day
   int32 hours = 1;
+  // Minutes of the hour
   int32 minutes = 2;
+  // Seconds of the minute
   int32 seconds = 3;
 }

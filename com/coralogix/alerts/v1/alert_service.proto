@@ -29,6 +29,8 @@ extend google.protobuf.MethodOptions {
 }
 
 service AlertService {
+  option deprecated = true;
+
   rpc GetAlert(GetAlertRequest) returns (GetAlertResponse) {
     option (audit_log_description).description = "get alert";
     option (google.api.http) = {

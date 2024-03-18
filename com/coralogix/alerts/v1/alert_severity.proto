@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.coralogix.alerts.v1;
 
 enum AlertSeverity {
+  //  The severity describing this alert
   ALERT_SEVERITY_INFO_OR_UNSPECIFIED = 0;
   ALERT_SEVERITY_WARNING = 1;
   ALERT_SEVERITY_CRITICAL = 2;

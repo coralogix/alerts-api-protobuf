@@ -6,8 +6,12 @@ import "google/protobuf/wrappers.proto";
 
 import "com/coralogix/alerts/v2/alert_notification_group.proto";
 
+// The alert incident settings
 message AlertIncidentSettings {
+  // The retriggering period of the alert in seconds
   google.protobuf.UInt32Value retriggering_period_seconds = 1;
+  // Notify on setting
   NotifyOn notify_on = 2;
+  // Use these settings for all notificaion webhook
   google.protobuf.BoolValue use_as_notification_settings = 3;
 }

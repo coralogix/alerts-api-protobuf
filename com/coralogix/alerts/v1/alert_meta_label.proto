@@ -5,6 +5,8 @@ package com.coralogix.alerts.v1;
 import "google/protobuf/wrappers.proto";
 
 message MetaLabel {
+  // The key of the label
   google.protobuf.StringValue key = 1;
+  // The value of the label
   google.protobuf.StringValue value = 2;
 }
