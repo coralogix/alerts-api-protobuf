@@ -137,14 +137,21 @@ message ApiError {
         // Error code
         ErrorCode code = 1 [(com.coralogix.openapi.v1.field) = { required: true } ];
          // Human-readable error message
-        google.protobuf.StringValue message = 2;   
+        google.protobuf.StringValue message = 2 [(com.coralogix.openapi.v1.field) = { example: "\"Not found\""} ];   
         // Additional information about the error
-        google.protobuf.StringValue more_info = 3;
+        google.protobuf.StringValue more_info = 3 [(com.coralogix.openapi.v1.field) = { example: "\"View not found\""} ];
     }
     // List of errors
     repeated Error errors = 1 [(com.coralogix.openapi.v1.field) = { required: true, min_length: 1 } ];
     // UUID uniquely identifying the request
-    google.protobuf.StringValue trace = 2 [(com.coralogix.openapi.v1.field) = { required: true } ];
+    google.protobuf.StringValue trace = 2 [(com.coralogix.openapi.v1.field) = { 
+        required: true,
+        format : "uuid",
+        min_length : 36,
+        max_length : 36,
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        example: "\"3dc02998-0b50-4ea8-b68a-4779d716fa1f\"",
+    }];
     // HTTP status code associated with the error
-    google.protobuf.Int32Value status_code = 3;   
+    google.protobuf.Int32Value status_code = 3 [(com.coralogix.openapi.v1.field) = { example: "404"}];   
 }
