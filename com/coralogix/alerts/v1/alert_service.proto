@@ -19,6 +19,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 import "com/coralogix/alerts/v1/tracing_alert.proto";
 import "com/coralogix/alerts/v1/fields_to_update.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
 message AuditLogDescription {
   optional string description = 1;
@@ -151,7 +152,12 @@ message CreateAlertRequest {
 
   AlertActiveWhen active_when = 11;
 
-  repeated google.protobuf.StringValue notification_payload_filters = 12;
+  repeated google.protobuf.StringValue notification_payload_filters = 12 [(com.coralogix.openapi.v1.field) = {
+    min_items: 0,
+    max_items: 100
+    required: false
+    example: "[\"message\", \"hostname\"]"
+  }];
 
   repeated MetaLabel meta_labels = 13;
   repeated google.protobuf.StringValue meta_labels_strings = 14;

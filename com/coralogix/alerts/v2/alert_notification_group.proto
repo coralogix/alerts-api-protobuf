@@ -18,6 +18,8 @@ message AlertNotificationGroups {
   repeated google.protobuf.StringValue group_by_fields = 1  [ (com.coralogix.openapi.v1.field) = {
     min_items: 0,
     max_items: 20
+    description:"subset of the group by fields of the alert"
+    example : "[\"cpu\"]"
   }];
   // Webhook target settings for the the notification
   repeated AlertNotification notifications = 2 [ (com.coralogix.openapi.v1.field) = {
@@ -28,12 +30,18 @@ message AlertNotificationGroups {
 // Alert notification
 message AlertNotification {
   // Retriggering period of the alert in seconds
-   optional google.protobuf.UInt32Value retriggering_period_seconds = 1;
+   optional google.protobuf.UInt32Value retriggering_period_seconds = 1[ (com.coralogix.openapi.v1.field) = {
+  required : false,
+      example : "60"
+      }];
    // Notify on setting
    optional NotifyOn notify_on = 2;
    oneof integration_type {
     // Integration id
-     google.protobuf.UInt32Value integration_id = 3;
+     google.protobuf.UInt32Value integration_id = 3 [ (com.coralogix.openapi.v1.field) = {
+      required : false,
+      example : "123"
+      }];
      // Recipients
      Recipients recipients = 5;
    }
@@ -41,7 +49,11 @@ message AlertNotification {
 // Recipients
 message Recipients {
   // Email addresses
-  repeated google.protobuf.StringValue emails = 1;
+  repeated google.protobuf.StringValue emails = 1 [ (com.coralogix.openapi.v1.field) = {
+    min_items: 0,
+    max_items: 20
+    example:"[\"example@gmail.com\"]"
+  }];
 }
 // Notify on enum
 enum NotifyOn {

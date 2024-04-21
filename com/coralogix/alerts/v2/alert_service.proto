@@ -246,7 +246,8 @@ message CreateAlertRequest {
   // JSON keys to include in the alert notification, if left empty get the full log text in the alert notification
   repeated google.protobuf.StringValue notification_payload_filters = 12 [ (com.coralogix.openapi.v1.field) = {
     max_items: 100,
-    min_items: 0
+    min_items: 0,
+    example: "[\"id\", \"name\"]"
   }];
   // The Meta labels to add to the alert
   repeated v1.MetaLabel meta_labels = 13 [ (com.coralogix.openapi.v1.field) = {
@@ -311,6 +312,7 @@ message GetAlertModelMappingRequest {
   repeated google.protobuf.StringValue notification_payload_filters = 12 [ (com.coralogix.openapi.v1.field) = {
     max_items: 100,
     min_items: 0
+    example: "[\"id\", \"name\"]"
   }];
   // The Meta labels to add to the alert
   repeated v1.MetaLabel meta_labels = 13 [ (com.coralogix.openapi.v1.field) = {

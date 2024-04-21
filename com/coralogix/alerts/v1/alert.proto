@@ -33,7 +33,7 @@ message Alert {
 
   AlertActiveWhen active_when = 11;
 
-  repeated google.protobuf.StringValue notification_payload_filters = 12;
+  repeated google.protobuf.StringValue notification_payload_filters = 12 ;
 
   repeated MetaLabel meta_labels = 13;
   repeated google.protobuf.StringValue meta_labels_strings = 14;

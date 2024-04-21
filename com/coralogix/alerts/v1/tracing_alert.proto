@@ -7,7 +7,8 @@ package com.coralogix.alerts.v1;
 message TracingAlert {
   // The latency condition in milliseconds
   uint32 condition_latency = 1 [(com.coralogix.openapi.v1.field) = {
-      required : true
+      required : true,
+    example: "1000"
   }];
   // The tracing field filters
   repeated FilterData field_filters = 2 [(com.coralogix.openapi.v1.field) = {
@@ -27,6 +28,7 @@ message FilterData {
   // The field name
   string field = 1 [(com.coralogix.openapi.v1.field) = {
     required : true
+    example: "host"
   }];
   // The field filters
   repeated Filters filters = 2 [(com.coralogix.openapi.v1.field) = {
@@ -43,10 +45,12 @@ message Filters {
     max_items: 100
     min_length: 0
     max_length: 256
+    example:"[\"alertingSystem\", \"monitoringSystem\"]"
   }];
   // The filter operator
   string operator = 2[ (com.coralogix.openapi.v1.field) = {
     min_length: 0
     max_length: 10
+    example: "contains"
   }];
 }

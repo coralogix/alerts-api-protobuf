@@ -54,9 +54,14 @@ message FlowCondition {
 }
 
 message ConditionParameters {
-  google.protobuf.DoubleValue threshold = 1;
+  google.protobuf.DoubleValue threshold = 1 [(com.coralogix.openapi.v1.field) = {
+    example: "100"  }
+  ];
+
   Timeframe timeframe = 2;
-  repeated google.protobuf.StringValue group_by = 3;
+  repeated google.protobuf.StringValue group_by = 3[(com.coralogix.openapi.v1.field) = {  min_length: 0, max_length: 36,
+    example: "[\"CPU\",\"Country\"]"
+  } ];
 
   MetricAlertConditionParameters metric_alert_parameters = 4;
   MetricAlertPromqlConditionParameters metric_alert_promql_parameters = 5;
@@ -66,8 +71,12 @@ message ConditionParameters {
   google.protobuf.BoolValue notify_group_by_only_alerts = 9;
   google.protobuf.BoolValue notify_per_group_by_value = 10;
 
-  repeated google.protobuf.StringValue cardinality_fields = 11;
+  repeated google.protobuf.StringValue cardinality_fields = 11 [(com.coralogix.openapi.v1.field) = {  min_length: 0, max_length: 36,
+    example: "[\"Host\",\"computerName\"]"
+  } ];
+
   google.protobuf.UInt32Value max_unique_count_values_for_group_by_key = 12;
+
   optional RelatedExtendedData related_extended_data = 13;
 }
 
@@ -123,6 +132,7 @@ message MetricAlertConditionParameters {
   // The metric field of the metric alert
   google.protobuf.StringValue metric_field = 1 [ (com.coralogix.openapi.v1.field) = {
     required: true
+    example: "cpu_usage"
   } ];
   // The metric source of the metric alert
   enum MetricSource {
@@ -147,16 +157,21 @@ message MetricAlertConditionParameters {
     required: true
   } ];
   // The arithmetic operator modifier of the metric promql alert
-  google.protobuf.UInt32Value arithmetic_operator_modifier = 4;
+  google.protobuf.UInt32Value arithmetic_operator_modifier = 4 [ (com.coralogix.openapi.v1.field) = {
+    required: false
+    example: "1"
+  }];
   // The threshold percentage
   google.protobuf.UInt32Value sample_threshold_percentage = 5 [ (com.coralogix.openapi.v1.field) = {
-    required: true
+    required: false
     pattern: "[0-100]"
+    example: "100"
   } ];
   // Non null percentage of the evaluation
   google.protobuf.UInt32Value non_null_percentage = 6 [ (com.coralogix.openapi.v1.field) = {
-    required: true
+    required: false
     pattern: "[0-100]"
+    example: "100"
   } ];
   // Should we swap null values with zero
   google.protobuf.BoolValue swap_null_values = 7;
@@ -167,21 +182,29 @@ message MetricAlertPromqlConditionParameters {
   // The promql text of the metric alert by fields for the alert condition
   google.protobuf.StringValue promql_text = 1 [ (com.coralogix.openapi.v1.field) = {
     required: true
+    example:"sum(rate(container_cpu_usage_seconds_total{container_name=\"my-container\"}[5m])) by (pod_name)"
   } ];
   // The arithmetic operator of the metric promql alert
-  google.protobuf.UInt32Value arithmetic_operator_modifier = 2;
+  google.protobuf.UInt32Value arithmetic_operator_modifier = 2 [ (com.coralogix.openapi.v1.field) = {
+    required: false
+    example: "1"
+  } ] ;
   // The threshold percentage
   google.protobuf.UInt32Value sample_threshold_percentage = 3  [ (com.coralogix.openapi.v1.field) = {
     required: true
     pattern: "[0-100]"
+    example: "100"
   } ];
   // Non null percentage of the evaluation
   google.protobuf.UInt32Value non_null_percentage = 4 [ (com.coralogix.openapi.v1.field) = {
-    required: true
+    required: false
     pattern: "[0-100]"
+    example: "100"
   } ];
   // Should we swap null values with zero
-  google.protobuf.BoolValue swap_null_values = 5;
+  google.protobuf.BoolValue swap_null_values = 5 [ (com.coralogix.openapi.v1.field) = {
+    example: "true"
+  } ];
 }
 // Related Extended Data for deadman
 message RelatedExtendedData {

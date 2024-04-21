@@ -3,6 +3,7 @@ syntax = "proto3";
 package com.coralogix.alerts.v1;
 
 import "google/protobuf/wrappers.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
 // Flow stage represents a stage of flow of alerts
 message FlowStage {
@@ -15,7 +16,9 @@ message FlowStage {
 // Flow represents a flow of alerts
 message FlowAlert {
   // alert id
-  google.protobuf.StringValue id = 1;
+  google.protobuf.StringValue id = 1 [(com.coralogix.openapi.v1.field) = {
+    example:"6ad87d32-1613-4cb1-b7e3-d97fee561913"
+  }];
   // alert not
   google.protobuf.BoolValue not = 2;
 }
@@ -39,7 +42,9 @@ message FlowGroup {
 // FlowTimeframe represents a timeframe for the flow
 message FlowTimeframe {
   // timeframe in milliseconds
-  google.protobuf.UInt32Value ms = 1;
+  google.protobuf.UInt32Value ms = 1 [(com.coralogix.openapi.v1.field) = {
+    example:"1000"
+  }];
 }
 
 // FlowOperator represents an operator for the flow
