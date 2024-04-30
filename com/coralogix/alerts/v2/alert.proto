@@ -86,7 +86,10 @@ message Alert {
     example : "[\"env:dev\"]",
   } ];
   // The definition for tracing alert
-  v1.TracingAlert tracing_alert = 15;
+  v1.TracingAlert tracing_alert = 15 [ (com.coralogix.openapi.v1.field) = {
+    skip_in: [CLOUD_IBM]
+  } ];
+
   // Alert unique identifier
   google.protobuf.StringValue unique_identifier = 16 [ (com.coralogix.openapi.v1.field) = {
     format : "uuid",

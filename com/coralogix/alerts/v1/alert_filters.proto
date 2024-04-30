@@ -59,7 +59,7 @@ message AlertFilters {
   // The text to filter
   google.protobuf.StringValue text = 4 [ (com.coralogix.openapi.v1.field) = {
     required : false,
-    description: "lucene filter "
+    description: "Lucene filter "
     example : "_exists_:\"container_name\"",
   } ];
   // Ratio alert
@@ -115,7 +115,7 @@ message AlertFilters {
     FILTER_TYPE_UNIQUE_COUNT = 3;
     FILTER_TYPE_TIME_RELATIVE = 4;
     FILTER_TYPE_METRIC = 5;
-    FILTER_TYPE_TRACING = 6;
+    FILTER_TYPE_TRACING = 6[(com.coralogix.openapi.v1.enum_value) = {skip_in: [CLOUD_IBM]}];
     FILTER_TYPE_FLOW = 7;
   }
 
