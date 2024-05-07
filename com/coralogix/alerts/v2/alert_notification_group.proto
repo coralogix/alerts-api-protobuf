@@ -52,6 +52,7 @@ message Recipients {
   repeated google.protobuf.StringValue emails = 1 [ (com.coralogix.openapi.v1.field) = {
     min_items: 0,
     max_items: 20
+    pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
     example:"[\"example@gmail.com\"]"
   }];
 }

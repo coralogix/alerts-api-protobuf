@@ -76,7 +76,6 @@ message AlertFilters {
     repeated LogSeverity severities = 3[ (com.coralogix.openapi.v1.field) = {
       required : false,
       description: "Severties filter "
-      example : "\"_exists_:\\\"container_name\\\"\"",
     } ];
     // The applications to filter
     repeated google.protobuf.StringValue applications = 4[ (com.coralogix.openapi.v1.field) = {
