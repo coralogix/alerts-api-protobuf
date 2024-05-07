@@ -15,11 +15,11 @@ message FlowStage {
 
 // Flow represents a flow of alerts
 message FlowAlert {
-  // alert id
+  // The alert id
   google.protobuf.StringValue id = 1 [(com.coralogix.openapi.v1.field) = {
-    example:"6ad87d32-1613-4cb1-b7e3-d97fee561913"
+    example: "\"6ad87d32-1613-4cb1-b7e3-d97fee561913\""
   }];
-  // alert not
+  // The alert not
   google.protobuf.BoolValue not = 2;
 }
 

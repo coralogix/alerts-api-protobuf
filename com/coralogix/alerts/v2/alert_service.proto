@@ -259,7 +259,9 @@ message CreateAlertRequest {
     example : "[\"env:dev\"]",
   } ];
   // The definition for tracing alert
-  optional v1.TracingAlert tracing_alert = 15;
+  optional v1.TracingAlert tracing_alert = 15 [ (com.coralogix.openapi.v1.field) = {
+    skip_in: [CLOUD_IBM]
+  }];
 }
 
 message CreateAlertResponse {
@@ -324,7 +326,9 @@ message GetAlertModelMappingRequest {
     example : "[\"env:dev\"]",
   } ];
   // The definition for tracing alert
-  optional v1.TracingAlert tracing_alert = 15;
+  optional v1.TracingAlert tracing_alert = 15  [ (com.coralogix.openapi.v1.field) = {
+    skip_in: [CLOUD_IBM]
+  }];
 }
 
 message GetAlertModelMappingResponse {

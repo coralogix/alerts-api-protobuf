@@ -6,9 +6,8 @@ import "google/protobuf/wrappers.proto";
 import "com/coralogix/openapi/v1/annotations.proto";
 
 message AlertFilters {
+  // Log severity
   enum LogSeverity {
-    option (com.coralogix.openapi.v1.enum).description = "Log severity";
-    
     LOG_SEVERITY_DEBUG_OR_UNSPECIFIED = 0;
     LOG_SEVERITY_VERBOSE = 1;
     LOG_SEVERITY_INFO = 2;
@@ -53,33 +52,31 @@ message AlertFilters {
   // The alias of the filter
   google.protobuf.StringValue alias = 3 [ (com.coralogix.openapi.v1.field) = {
     required : false,
-    example : "monitorQuery",
+    example : "\"monitorQuery\"",
   } ];
 
   // The text to filter
   google.protobuf.StringValue text = 4 [ (com.coralogix.openapi.v1.field) = {
     required : false,
-    description: "Lucene filter "
-    example : "_exists_:\"container_name\"",
+    example : "\"_exists_:\\\"container_name\\\"\"",
   } ];
   // Ratio alert
   message RatioAlert {
     // The alias of the filter
     google.protobuf.StringValue alias = 1 [ (com.coralogix.openapi.v1.field) = {
       required : true,
-      example : "TopLevelAlert",
+      example : "\"TopLevelAlert\"",
     } ];
     // The text to filter
     google.protobuf.StringValue text = 2 [ (com.coralogix.openapi.v1.field) = {
       required : false,
-      description: "Lucene filter"
-      example : "_exists_:\"container_name\"",
+      example : "\"_exists_:\\\"container_name\\\"\"",
     } ];
     // The severities to filter
     repeated LogSeverity severities = 3[ (com.coralogix.openapi.v1.field) = {
       required : false,
       description: "Severties filter "
-      example : "_exists_:\"container_name\"",
+      example : "\"_exists_:\\\"container_name\\\"\"",
     } ];
     // The applications to filter
     repeated google.protobuf.StringValue applications = 4[ (com.coralogix.openapi.v1.field) = {
@@ -107,8 +104,8 @@ message AlertFilters {
   // The ratio alerts
   repeated RatioAlert ratio_alerts = 5;
 
+  // The filter type
   enum FilterType {
-    option (com.coralogix.openapi.v1.enum).description = "Filter type";
     FILTER_TYPE_TEXT_OR_UNSPECIFIED = 0;
     FILTER_TYPE_TEMPLATE = 1;
     FILTER_TYPE_RATIO = 2;

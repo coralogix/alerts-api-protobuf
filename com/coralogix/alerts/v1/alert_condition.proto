@@ -132,7 +132,7 @@ message MetricAlertConditionParameters {
   // The metric field of the metric alert
   google.protobuf.StringValue metric_field = 1 [ (com.coralogix.openapi.v1.field) = {
     required: true
-    example: "cpu_usage"
+    example: "\"cpu_usage\""
   } ];
   // The metric source of the metric alert
   enum MetricSource {
@@ -182,7 +182,7 @@ message MetricAlertPromqlConditionParameters {
   // The promql text of the metric alert by fields for the alert condition
   google.protobuf.StringValue promql_text = 1 [ (com.coralogix.openapi.v1.field) = {
     required: true
-    example:"sum(rate(container_cpu_usage_seconds_total{container_name=\"my-container\"}[5m])) by (pod_name)"
+    example:"\"sum(rate(container_cpu_usage_seconds_total{container_name=\\\"my-container\\\"}[5m])) by (pod_name)\""
   } ];
   // The arithmetic operator of the metric promql alert
   google.protobuf.UInt32Value arithmetic_operator_modifier = 2 [ (com.coralogix.openapi.v1.field) = {
