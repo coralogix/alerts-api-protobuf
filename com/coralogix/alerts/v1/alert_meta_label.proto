@@ -8,10 +8,10 @@ import "com/coralogix/openapi/v1/annotations.proto";
 message MetaLabel {
   // The key of the label
   google.protobuf.StringValue key = 1 [(com.coralogix.openapi.v1.field) = {
-    example:"ColorLabel"
+    example: "\"ColorLabel\""
   }];
   // The value of the label
   google.protobuf.StringValue value = 2 [(com.coralogix.openapi.v1.field) = {
-    example:"Red"
+    example: "\"Red\""
   }];
 }

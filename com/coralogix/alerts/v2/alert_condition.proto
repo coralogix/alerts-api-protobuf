@@ -89,6 +89,7 @@ message ConditionParameters {
   // The threshold for the alert condition
   google.protobuf.DoubleValue threshold = 1 [ (com.coralogix.openapi.v1.field) = {
     required: true
+    example: "0.4"
   } ];
   // The timeframe for the alert condition
   v1.Timeframe timeframe = 2 [ (com.coralogix.openapi.v1.field) = {
@@ -100,6 +101,7 @@ message ConditionParameters {
     max_items: 3
     min_length: 0
     max_length: 256
+    example: "\"message.severity\""
   } ];
 
   // The lucene metric alert parameters if it is a lucene metric alert
@@ -114,7 +116,9 @@ message ConditionParameters {
   v1.RelativeTimeframe relative_timeframe = 7;
   google.protobuf.BoolValue notify_group_by_only_alerts = 8 [deprecated = true];
   // Cardinality fields for unique count alert
-  repeated google.protobuf.StringValue cardinality_fields = 10;
+  repeated google.protobuf.StringValue cardinality_fields = 10 [ (com.coralogix.openapi.v1.field) = {
+    example: "\"message.severity\""
+  } ];
   google.protobuf.UInt32Value max_unique_count_values_for_group_by_key = 11 [deprecated = true];
   // Deadman configuration
   optional v1.RelatedExtendedData related_extended_data = 12;
