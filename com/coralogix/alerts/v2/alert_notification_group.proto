@@ -16,7 +16,6 @@ message ShowInInsight {
 message AlertNotificationGroups {
   // Group by fields to group the values by
   repeated google.protobuf.StringValue group_by_fields = 1  [ (com.coralogix.openapi.v1.field) = {
-    description: "Subset of the group by fields of the alert"
     min_items: 0,
     max_items: 20
     example : "[\"cpu\"]"

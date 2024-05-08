@@ -38,6 +38,7 @@ message Alert {
   // Alert description
   google.protobuf.StringValue description = 3 [ (com.coralogix.openapi.v1.field) = {
     example : "\"Example of unique count alert from terraform\"",
+    pattern: "^[A-Za-z0-9_\\-\\s]+$"
   } ];
   // Alert is active
   google.protobuf.BoolValue is_active = 4 [ (com.coralogix.openapi.v1.field) = {
