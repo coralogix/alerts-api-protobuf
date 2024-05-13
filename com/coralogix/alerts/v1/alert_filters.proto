@@ -3,8 +3,10 @@ syntax = "proto3";
 package com.coralogix.alerts.v1;
 
 import "google/protobuf/wrappers.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
 message AlertFilters {
+  // Log severity
   enum LogSeverity {
     LOG_SEVERITY_DEBUG_OR_UNSPECIFIED = 0;
     LOG_SEVERITY_VERBOSE = 1;
@@ -14,34 +16,93 @@ message AlertFilters {
     LOG_SEVERITY_CRITICAL = 5;
   }
 
+  // The severity of the logs to filter
   repeated LogSeverity severities = 1;
-
+  // The metadata filters
   message MetadataFilters {
-    repeated google.protobuf.StringValue categories = 1;
-    repeated google.protobuf.StringValue applications = 2;
-    repeated google.protobuf.StringValue subsystems = 3;
-    repeated google.protobuf.StringValue computers = 4;
-    repeated google.protobuf.StringValue classes = 5;
-    repeated google.protobuf.StringValue methods = 6;
-    repeated google.protobuf.StringValue ip_addresses = 7;
+    // The categories to filter
+    repeated google.protobuf.StringValue categories = 1 [deprecated = true];
+    // The applications to filter
+    repeated google.protobuf.StringValue applications = 2[(com.coralogix.openapi.v1.field) = {
+        min_items: 0,
+        max_items: 100
+        required: false
+        example: "[\"CpuMonitoring\", \"WebApi\"]"
+        }];
+    // The subsystems to filter
+    repeated google.protobuf.StringValue subsystems = 3 [(com.coralogix.openapi.v1.field) = {
+        min_items: 0,
+        max_items: 100
+        required: false
+        example: "[\"SnapshotGenerator\", \"PermissionControl\"]"
+        }];
+    // The computers to filter
+    repeated google.protobuf.StringValue computers = 4 [deprecated = true];
+    // The classes to filter
+    repeated google.protobuf.StringValue classes = 5 [deprecated = true];
+    // The methods to filter
+    repeated google.protobuf.StringValue methods = 6 [deprecated = true];
+    // The IP addresses to filter
+    repeated google.protobuf.StringValue ip_addresses = 7 [deprecated = true];
   }
 
+  // The metadata filters
   MetadataFilters metadata = 2;
 
-  google.protobuf.StringValue alias = 3;
-  google.protobuf.StringValue text = 4;
+  // The alias of the filter
+  google.protobuf.StringValue alias = 3 [ (com.coralogix.openapi.v1.field) = {
+    required : false,
+    example : "\"monitorQuery\"",
+  } ];
 
+  // The text to filter
+  google.protobuf.StringValue text = 4 [ (com.coralogix.openapi.v1.field) = {
+    required : false,
+    example : "\"_exists_:\\\"container_name\\\"\"",
+  } ];
+  // Ratio alert
   message RatioAlert {
-    google.protobuf.StringValue alias = 1;
-    google.protobuf.StringValue text = 2;
-    repeated LogSeverity severities = 3;
-    repeated google.protobuf.StringValue applications = 4;
-    repeated google.protobuf.StringValue subsystems = 5;
-    repeated google.protobuf.StringValue group_by = 6;
+    // The alias of the filter
+    google.protobuf.StringValue alias = 1 [ (com.coralogix.openapi.v1.field) = {
+      required : true,
+      example : "\"TopLevelAlert\"",
+    } ];
+    // The text to filter
+    google.protobuf.StringValue text = 2 [ (com.coralogix.openapi.v1.field) = {
+      required : false,
+      example : "\"_exists_:\\\"container_name\\\"\"",
+    } ];
+    // The severities to filter
+    repeated LogSeverity severities = 3[ (com.coralogix.openapi.v1.field) = {
+      required : false,
+    } ];
+    // The applications to filter
+    repeated google.protobuf.StringValue applications = 4[ (com.coralogix.openapi.v1.field) = {
+      min_items: 0,
+      max_items: 100
+      required: false
+      example: "[\"CpuMonitoring\", \"WebApi\"]"
+    }];
+    // The subsystems to filter
+    repeated google.protobuf.StringValue subsystems = 5 [ (com.coralogix.openapi.v1.field) = {
+      min_items: 0,
+      max_items: 100
+      required: false
+      example: "[\"SnapshotGenerator\", \"PermissionControl\"]"
+    }];
+    // The group by fields
+    repeated google.protobuf.StringValue group_by = 6 [(com.coralogix.openapi.v1.field) = {
+      min_items: 0,
+      max_items: 100
+      required: false
+      example: "[\"Host\", \"Thread\"]"
+    }];
   }
 
+  // The ratio alerts
   repeated RatioAlert ratio_alerts = 5;
 
+  // The filter type
   enum FilterType {
     FILTER_TYPE_TEXT_OR_UNSPECIFIED = 0;
     FILTER_TYPE_TEMPLATE = 1;
@@ -49,9 +110,10 @@ message AlertFilters {
     FILTER_TYPE_UNIQUE_COUNT = 3;
     FILTER_TYPE_TIME_RELATIVE = 4;
     FILTER_TYPE_METRIC = 5;
-    FILTER_TYPE_TRACING = 6;
+    FILTER_TYPE_TRACING = 6[(com.coralogix.openapi.v1.enum_value) = {skip_in: [CLOUD_IBM]}];
     FILTER_TYPE_FLOW = 7;
   }
 
+  // The type of the filter
   FilterType filter_type = 6;
 }

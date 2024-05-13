@@ -1,19 +1,56 @@
 syntax = "proto3";
 
+import "com/coralogix/openapi/v1/annotations.proto";
 package com.coralogix.alerts.v1;
 
+// Trace alert conditions
 message TracingAlert {
-    uint32 condition_latency = 1;
-    repeated FilterData field_filters = 2;
-    repeated FilterData tag_filters = 3;
+  // The latency condition in milliseconds
+  uint32 condition_latency = 1 [(com.coralogix.openapi.v1.field) = {
+      required : true,
+    example: "1000"
+  }];
+  // The tracing field filters
+  repeated FilterData field_filters = 2 [(com.coralogix.openapi.v1.field) = {
+      max_items: 100
+      min_items: 0
+  }];
+
+  // The tracing tag filters
+  repeated FilterData tag_filters = 3 [(com.coralogix.openapi.v1.field) = {
+    max_items: 100
+    min_items: 0
+  }];
 }
 
+// Filter data
 message FilterData {
-  string field = 1;
-  repeated Filters filters = 2;
+  // The field name
+  string field = 1 [(com.coralogix.openapi.v1.field) = {
+    required : true
+    example: "host"
+  }];
+  // The field filters
+  repeated Filters filters = 2 [(com.coralogix.openapi.v1.field) = {
+    max_items: 100
+    min_items: 0
+  }];
 }
 
+// Filter values and operator
 message Filters {
-  repeated string values = 1;
-  string operator = 2;
+  // The filter values
+  repeated string values = 1 [(com.coralogix.openapi.v1.field) = {
+    min_items:0
+    max_items: 100
+    min_length: 0
+    max_length: 256
+    example:"[\"alertingSystem\", \"monitoringSystem\"]"
+  }];
+  // The filter operator
+  string operator = 2[ (com.coralogix.openapi.v1.field) = {
+    min_length: 0
+    max_length: 10
+    example: "contains"
+  }];
 }

@@ -3,11 +3,18 @@ syntax = "proto3";
 package com.coralogix.alerts.v2;
 
 import "google/protobuf/wrappers.proto";
-
 import "com/coralogix/alerts/v2/alert_notification_group.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
+// The alert incident settings
 message AlertIncidentSettings {
-  google.protobuf.UInt32Value retriggering_period_seconds = 1;
+  // The retriggering period of the alert in seconds
+  google.protobuf.UInt32Value retriggering_period_seconds = 1  [(com.coralogix.openapi.v1.field) = {
+      required : false,
+      example : "60"
+      }];
+  // Notify on setting
   NotifyOn notify_on = 2;
+  // Use these settings for all notificaion webhook
   google.protobuf.BoolValue use_as_notification_settings = 3;
 }

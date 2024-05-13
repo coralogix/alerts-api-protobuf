@@ -2,31 +2,60 @@ syntax = "proto3";
 
 package com.coralogix.alerts.v2;
 
+import "com/coralogix/openapi/v1/annotations.proto";
 import "google/protobuf/wrappers.proto";
 
+// Show in insight
 message ShowInInsight {
+  // Retriggering period of the alert in seconds
   optional google.protobuf.UInt32Value retriggering_period_seconds = 1;
+  // Notify on setting
   optional NotifyOn notify_on = 2;
 }
-
+// Alert notification groups
 message AlertNotificationGroups {
-  repeated google.protobuf.StringValue group_by_fields = 1;
-  repeated AlertNotification notifications = 2;
+  // Group by fields to group the values by
+  repeated google.protobuf.StringValue group_by_fields = 1  [ (com.coralogix.openapi.v1.field) = {
+    min_items: 0,
+    max_items: 20
+    example : "[\"cpu\"]"
+  }];
+  // Webhook target settings for the the notification
+  repeated AlertNotification notifications = 2 [ (com.coralogix.openapi.v1.field) = {
+    min_items: 0,
+    max_items: 20
+  }];
 }
-
+// Alert notification
 message AlertNotification {
-   optional google.protobuf.UInt32Value retriggering_period_seconds = 1;
+  // Retriggering period of the alert in seconds
+   optional google.protobuf.UInt32Value retriggering_period_seconds = 1[ (com.coralogix.openapi.v1.field) = {
+    required : false,
+      example : "60"
+      }];
+   // Notify on setting
    optional NotifyOn notify_on = 2;
    oneof integration_type {
-     google.protobuf.UInt32Value integration_id = 3;
+    // Integration id
+     google.protobuf.UInt32Value integration_id = 3 [ (com.coralogix.openapi.v1.field) = {
+      required : false,
+      example : "123"
+      }];
+     // Recipients
      Recipients recipients = 5;
    }
 }
-
+// Recipients
 message Recipients {
-  repeated google.protobuf.StringValue emails = 1;
+  // Email addresses
+  repeated google.protobuf.StringValue emails = 1 [ (com.coralogix.openapi.v1.field) = {
+    min_items: 0,
+    max_items: 20
+    pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    example:"[\"example@gmail.com\"]"
+  }];
 }
-
+// Notify on enum
 enum NotifyOn {
   TRIGGERED_ONLY = 0;
   TRIGGERED_AND_RESOLVED = 1;

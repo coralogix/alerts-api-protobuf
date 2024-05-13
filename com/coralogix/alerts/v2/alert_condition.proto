@@ -5,66 +5,121 @@ package com.coralogix.alerts.v2;
 import "google/protobuf/wrappers.proto";
 import "com/coralogix/alerts/v1/flow_alert.proto";
 import "com/coralogix/alerts/v1/alert_condition.proto";
+import "com/coralogix/openapi/v1/annotations.proto";
 
+// The alert condition for the alert
 message AlertCondition {
   oneof condition {
+    // Condition for immediate standard alert
     ImmediateCondition immediate = 1;
+    // Condition for less than alert
     LessThanCondition less_than = 2;
+    // Condition for more than alert
     MoreThanCondition more_than = 3;
+    // Condition for more than usual alert
     MoreThanUsualCondition more_than_usual = 4;
+    // Condition for new value alert
     NewValueCondition new_value = 5;
+    // Condition for flow alert
     FlowCondition flow = 6;
+    // Condition for unique count alert
     UniqueCountCondition unique_count = 7;
+    // Condition for less than usual alert
     LessThanUsualCondition less_than_usual = 8;
   }
 }
 
+// The Immediate alert condition, does not have any condition parameters
 message ImmediateCondition {
 }
 
+// The Less than alert condition
 message LessThanCondition {
-  ConditionParameters parameters = 1;
+  // The Less than alert condition parameters
+  ConditionParameters parameters = 1 [ (com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
 }
 
+// The More than alert condition
 message MoreThanCondition {
-  ConditionParameters parameters = 1;
+  // The More than alert condition parameters
+  ConditionParameters parameters = 1  [ (com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
+  // The evaluation window for the alert condition
   optional v1.EvaluationWindow evaluation_window = 2;
 }
 
+// The More than usual alert condition
 message MoreThanUsualCondition {
-  ConditionParameters parameters = 1;
+  // The More than usual alert condition parameters
+  ConditionParameters parameters = 1  [ (com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
 }
 
+// The Less than usual alert condition
 message LessThanUsualCondition {
-  ConditionParameters parameters = 1;
+  // The Less than usual alert condition parameters
+  ConditionParameters parameters = 1  [ (com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
 }
 
+// The New value alert condition
 message NewValueCondition {
-  ConditionParameters parameters = 1;
+  // The New value alert condition parameters
+  ConditionParameters parameters = 1  [ (com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
 }
 
+// The Unique count alert condition
 message UniqueCountCondition {
-  ConditionParameters parameters = 1;
+  // The Unique count alert condition parameters
+  ConditionParameters parameters = 1  [ (com.coralogix.openapi.v1.field) = { required: true, min_items: 1 } ];
 }
 
+// The Flow alert condition
 message FlowCondition {
-  repeated v1.FlowStage stages = 1;
+  // The Flow alert condition parameters
+  repeated v1.FlowStage stages = 1 [ (com.coralogix.openapi.v1.field) = {
+    min_items:0,
+    max_items:50
+  }];
+  // The Flow alert condition parameters
   optional ConditionParameters parameters = 2;
+  // Should suppression be enforced on the flow alert
   google.protobuf.BoolValue enforce_suppression = 3;
 }
 
+// The alert condition
 message ConditionParameters {
-  google.protobuf.DoubleValue threshold = 1;
-  v1.Timeframe timeframe = 2;
-  repeated google.protobuf.StringValue group_by = 3;
+  // The threshold for the alert condition
+  google.protobuf.DoubleValue threshold = 1 [ (com.coralogix.openapi.v1.field) = {
+    required: true
+    example: "0.4"
+  } ];
+  // The timeframe for the alert condition
+  v1.Timeframe timeframe = 2 [ (com.coralogix.openapi.v1.field) = {
+    required: true
+  } ];
+  // The group by fields for the alert condition
+  repeated google.protobuf.StringValue group_by = 3 [ (com.coralogix.openapi.v1.field) = {
+    min_items: 0
+    max_items: 3
+    min_length: 0
+    max_length: 256
+    example: "\"message.severity\""
+  } ];
 
-  v1.MetricAlertConditionParameters metric_alert_parameters = 4;
-  v1.MetricAlertPromqlConditionParameters metric_alert_promql_parameters = 5;
+  // The lucene metric alert parameters if it is a lucene metric alert
+  v1.MetricAlertConditionParameters metric_alert_parameters = 4 [ (com.coralogix.openapi.v1.field) = {
+  } ];
+  // The promql metric alert parameters if is is a promql metric alert
+  v1.MetricAlertPromqlConditionParameters metric_alert_promql_parameters = 5 [ (com.coralogix.openapi.v1.field) = {
+  } ];
+  // Should the evaluation ignore infinity value
   google.protobuf.BoolValue ignore_infinity = 6;
+  // The relative timeframe for time relative alerts
   v1.RelativeTimeframe relative_timeframe = 7;
-  google.protobuf.BoolValue notify_group_by_only_alerts = 8;
-
-  repeated google.protobuf.StringValue cardinality_fields = 10;
-  google.protobuf.UInt32Value max_unique_count_values_for_group_by_key = 11;
+  google.protobuf.BoolValue notify_group_by_only_alerts = 8 [deprecated = true];
+  // Cardinality fields for unique count alert
+  repeated google.protobuf.StringValue cardinality_fields = 10 [ (com.coralogix.openapi.v1.field) = {
+    example: "\"message.severity\""
+  } ];
+  google.protobuf.UInt32Value max_unique_count_values_for_group_by_key = 11 [deprecated = true];
+  // Deadman configuration
   optional v1.RelatedExtendedData related_extended_data = 12;
 }

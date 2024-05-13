@@ -14,6 +14,8 @@ import "com/coralogix/alerts/v1/date_time.proto";
 import "com/coralogix/alerts/v1/tracing_alert.proto";
 
 message Alert {
+  option deprecated= true;
+
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue description = 3;
@@ -31,7 +33,7 @@ message Alert {
 
   AlertActiveWhen active_when = 11;
 
-  repeated google.protobuf.StringValue notification_payload_filters = 12;
+  repeated google.protobuf.StringValue notification_payload_filters = 12 ;
 
   repeated MetaLabel meta_labels = 13;
   repeated google.protobuf.StringValue meta_labels_strings = 14;
