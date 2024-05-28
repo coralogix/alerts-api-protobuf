@@ -17,7 +17,7 @@ message AlertCondition {
     LessThanUsualCondition less_than_usual = 8;
     MoreThanOrEqualCondition more_than_or_equal = 9;
     LessThanOrEqualCondition less_than_or_equal = 10;
-    NotCondition not = 11;
+//    NotCondition not = 11;
   }
 }
 
@@ -64,9 +64,9 @@ message FlowCondition {
   google.protobuf.BoolValue enforce_suppression = 3;
 }
 
-message NotCondition {
-  ConditionParameters parameters = 1;
-}
+//message NotCondition {
+//  ConditionParameters parameters = 1;
+//}
 
 message ConditionParameters {
   google.protobuf.DoubleValue threshold = 1;
