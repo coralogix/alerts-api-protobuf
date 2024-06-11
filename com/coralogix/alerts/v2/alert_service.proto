@@ -25,6 +25,7 @@ import "com/coralogix/openapi/v1/annotations.proto";
 
 service AlertService {
   option (com.coralogix.openapi.v1.service) = {
+    name: "Alerts"
     description: "Create and manage alerts."
     resource_name: "Alert"
   };
