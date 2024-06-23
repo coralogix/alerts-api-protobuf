@@ -4,6 +4,8 @@ package com.coralogix.alerts.v1;
 
 import "google/protobuf/wrappers.proto";
 
+option go_package = "com/coralogixapis/alerts/v1";
+
 message MetaLabel {
   google.protobuf.StringValue key = 1;
   google.protobuf.StringValue value = 2;

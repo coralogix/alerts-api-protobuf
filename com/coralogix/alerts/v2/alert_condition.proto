@@ -6,6 +6,8 @@ import "google/protobuf/wrappers.proto";
 import "com/coralogix/alerts/v1/flow_alert.proto";
 import "com/coralogix/alerts/v1/alert_condition.proto";
 
+option go_package = "com/coralogixapis/alerts/v2";
+
 message AlertCondition {
   oneof condition {
     ImmediateCondition immediate = 1;

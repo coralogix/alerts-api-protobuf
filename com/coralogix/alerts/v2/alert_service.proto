@@ -22,6 +22,8 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "com/coralogix/alerts/v1/tracing_alert.proto";
 
+option go_package = "com/coralogixapis/alerts/v2";
+
 service AlertService {
   rpc GetAlert(GetAlertRequest) returns (GetAlertResponse) {
     option (v1.audit_log_description).description = "get alert";

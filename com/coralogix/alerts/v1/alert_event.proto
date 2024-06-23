@@ -8,6 +8,8 @@ import "com/coralogix/alerts/v1/alert_severity.proto";
 import "com/coralogix/alerts/v1/alert_snoozed.proto";
 import "google/protobuf/timestamp.proto";
 
+option go_package = "com/coralogixapis/alerts/v1";
+
 message AlertEvent {
   google.protobuf.StringValue id = 1;
   AlertEventType type = 2;

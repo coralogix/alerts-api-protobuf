@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package com.coralogix.alerts.v1;
 
+option go_package = "com/coralogixapis/alerts/v1";
+
 message Date {
   int32 year = 1;
   int32 month = 2;
